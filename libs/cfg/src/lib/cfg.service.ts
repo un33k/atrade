@@ -1,11 +1,3 @@
-/**
- * @license
- * Copyright Neekware Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at http://neekware.com/license/MIT.html
- */
-
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -13,7 +5,7 @@ import { get, isEmpty, merge } from 'lodash';
 import { of as observableOf } from 'rxjs';
 import { timeout, catchError } from 'rxjs/operators';
 
-import { AppCfg, HttpMethod, Cfg } from './cfg.types';
+import { AppCfg, HttpMethod } from './cfg.types';
 import { CFG_OPTIONS, DefaultAppCfg } from './cfg.defaults';
 
 @Injectable({
@@ -21,7 +13,10 @@ import { CFG_OPTIONS, DefaultAppCfg } from './cfg.defaults';
 })
 export class CfgService {
   options: AppCfg;
-  constructor(@Inject(CFG_OPTIONS) private appOptions: AppCfg, private http: HttpClient) {
+  constructor(
+    @Inject(CFG_OPTIONS) private appOptions: AppCfg,
+    private http: HttpClient
+  ) {
     this.options = merge(DefaultAppCfg, appOptions);
     if (!this.options.production) {
       console.log(`CfgService ready ...`);
@@ -63,11 +58,11 @@ export class CfgService {
                 }
                 this.options.rmtData = resp;
               }
-              resolve();
+              resolve(resp);
             });
         });
       }
     }
-    return new Promise((resolve, reject) => resolve());
+    return new Promise((resolve, reject) => resolve({}));
   }
 }
