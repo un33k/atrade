@@ -12,19 +12,20 @@ import { CFG_OPTIONS, DefaultAppCfg } from './cfg.defaults';
   providedIn: 'root'
 })
 export class CfgService {
-  options: AppCfg;
+  _options: AppCfg;
+
   constructor(
     @Inject(CFG_OPTIONS) private appOptions: AppCfg,
     private http: HttpClient
   ) {
-    this.options = merge(DefaultAppCfg, appOptions);
+    this._options = merge(DefaultAppCfg, appOptions);
     if (!this.options.production) {
       console.log(`CfgService ready ...`);
     }
   }
 
-  loadRemoteOptions(): Promise<any> {
-    const rmtCfg = get(this.options, 'rmtCfg');
+  fetchRemoteConfig(): Promise<any> {
+    const rmtCfg = get(this._options, 'rmtCfg');
     if (rmtCfg) {
       const url = get(rmtCfg, 'endpoint');
       if (url) {
@@ -43,20 +44,17 @@ export class CfgService {
             .pipe(
               timeout(rmtCfg.timeout * 1000),
               catchError((err: Response) => {
-                if (!this.options.production) {
-                  console.log(`CfgService failed ...`);
-                  console.log(`${get(err, 'message')}`);
-                }
+                console.warn(`CfgService failed. (${get(err, 'message')})`);
                 return observableOf({});
               })
             )
             .toPromise()
             .then(resp => {
               if (!isEmpty(resp)) {
-                if (!this.options.production) {
+                if (!this._options.production) {
                   console.log(`CfgService remote cfg fetched ...`);
                 }
-                this.options.rmtData = resp;
+                this._options.rmtData = resp;
               }
               resolve(resp);
             });
@@ -64,5 +62,9 @@ export class CfgService {
       }
     }
     return new Promise((resolve, reject) => resolve({}));
+  }
+
+  get options() {
+    return this._options;
   }
 }

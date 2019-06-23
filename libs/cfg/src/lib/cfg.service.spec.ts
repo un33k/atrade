@@ -1,45 +1,41 @@
-import {
-  TestBed,
-  inject,
-  fakeAsync,
-  tick,
-  getTestBed
-} from '@angular/core/testing';
-import { HttpEvent, HttpEventType } from '@angular/common/http';
+import { TestBed, inject, getTestBed } from '@angular/core/testing';
 import {
   HttpClientTestingModule,
   HttpTestingController
 } from '@angular/common/http/testing';
 
 import { CfgService } from './cfg.service';
-import { AppCfg, TargetPlatform, HttpMethod } from './cfg.types';
+import { AppCfg, HttpMethod } from './cfg.types';
 import { CFG_OPTIONS } from './cfg.defaults';
 import { CfgModule } from './cfg.module';
 
 const AppEnv: AppCfg = {
-  version: '1.0.0',
+  version: '1.0.1',
   production: true,
   rmtCfg: {
     endpoint: 'http://example.com/remote/cfg'
   }
 };
 
-describe('CfgService local', () => {
+describe('CfgService local config', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, CfgModule.forRoot(AppEnv)],
       providers: [{ provide: CFG_OPTIONS, useValue: AppEnv }, CfgService]
     });
+
+    // disable console warn during test
+    jest.spyOn(console, 'log').mockImplementation(() => undefined);
   });
 
   it('should be created', inject([CfgService], (service: CfgService) => {
-    expect(service).toBeTruthy();
+    expect(service).toBeDefined();
   }));
 
   it('should be have the version options', inject(
     [CfgService],
     (service: CfgService) => {
-      expect(service.options.version).toBe('1.0.0');
+      expect(service.options.version).toBe('1.0.1');
     }
   ));
 
@@ -58,7 +54,7 @@ describe('CfgService local', () => {
   ));
 });
 
-describe('CfgService remote config', () => {
+describe('CfgService remote confign via GET', () => {
   let injector: TestBed;
   let service: CfgService;
   let httpMock: HttpTestingController;
@@ -72,10 +68,14 @@ describe('CfgService remote config', () => {
     injector = getTestBed();
     service = injector.get(CfgService);
     httpMock = injector.get(HttpTestingController);
+
+    // disable console warn during test
+    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
   });
 
   afterEach(() => {
     service.options.rmtData = null;
+    httpMock.verify();
   });
 
   it('should get remote config via GET', () => {
@@ -85,7 +85,7 @@ describe('CfgService remote config', () => {
       splash: 'https://foo.com/election.gif'
     };
 
-    service.loadRemoteOptions().then(() => {
+    service.fetchRemoteConfig().then(() => {
       expect(service.options.rmtData).toEqual(mockRemoteData);
     });
 
@@ -94,7 +94,50 @@ describe('CfgService remote config', () => {
     expect(mockReq.request.method).toEqual('GET');
     expect(mockReq.request.responseType).toEqual('json');
     mockReq.flush(mockRemoteData);
+  });
 
+  it('should get remote config handle Error', () => {
+    service.fetchRemoteConfig().then(() => {
+      expect(service.options.rmtData).toEqual(null);
+    });
+
+    const mockReq = httpMock.expectOne(service.options.rmtCfg.endpoint);
+    expect(mockReq.cancelled).toBeFalsy();
+    expect(mockReq.request.responseType).toEqual('json');
+    mockReq.flush(null, { status: 400, statusText: 'Bad Request' });
+  });
+});
+
+describe('CfgService remote config via POSt', () => {
+  let injector: TestBed;
+  let service: CfgService;
+  let httpMock: HttpTestingController;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [
+        {
+          provide: CFG_OPTIONS,
+          useValue: {
+            ...AppEnv,
+            rmtCfg: { ...AppEnv.rmtCfg, method: HttpMethod.post }
+          }
+        },
+        CfgService
+      ]
+    });
+
+    injector = getTestBed();
+    service = injector.get(CfgService);
+    httpMock = injector.get(HttpTestingController);
+
+    // disable console warn during test
+    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+  });
+
+  afterEach(() => {
+    service.options.rmtData = null;
     httpMock.verify();
   });
 
@@ -105,8 +148,16 @@ describe('CfgService remote config', () => {
       splash: 'https://foo.com/election.gif'
     };
 
-    service.options.rmtCfg.method = HttpMethod.post;
-    service.loadRemoteOptions().then(() => {
+    injector.overrideProvider(CFG_OPTIONS, {
+      useValue: {
+        ...AppEnv,
+        rmtCfg: { ...AppEnv.rmtCfg, method: HttpMethod.post }
+      }
+    });
+
+    expect(service.options.rmtCfg.method).toBe(HttpMethod.post);
+
+    service.fetchRemoteConfig().then(() => {
       expect(service.options.rmtData).toEqual(mockRemoteData);
     });
 
@@ -115,26 +166,5 @@ describe('CfgService remote config', () => {
     expect(mockReq.request.method).toEqual('POST');
     expect(mockReq.request.responseType).toEqual('json');
     mockReq.flush(mockRemoteData);
-
-    httpMock.verify();
-  });
-
-  it('should get remote config handle Error', () => {
-    const mockRemoteData = {
-      country: 'US',
-      state: 'California',
-      splash: 'https://foo.com/election.gif'
-    };
-
-    service.loadRemoteOptions().then(() => {
-      expect(service.options.rmtData).toEqual(null);
-    });
-
-    const mockReq = httpMock.expectOne(service.options.rmtCfg.endpoint);
-    expect(mockReq.cancelled).toBeFalsy();
-    expect(mockReq.request.responseType).toEqual('json');
-    mockReq.flush(null, { status: 400, statusText: 'Bad Request' });
-
-    httpMock.verify();
   });
 });
