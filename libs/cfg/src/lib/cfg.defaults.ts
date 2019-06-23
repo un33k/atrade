@@ -21,7 +21,7 @@ export const DefaultRemoteCfg: RemoteCfg = {
 export const DefaultAppCfg: AppCfg = {
   version: '0.0.1',
   production: false,
-  appName: '@nwx/cfg',
+  appName: '@ngcx/cfg',
   target: TargetPlatform.web,
   cfg: DefaultCfg,
   rmtCfg: DefaultRemoteCfg,

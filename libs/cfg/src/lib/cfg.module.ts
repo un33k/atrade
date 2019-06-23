@@ -15,7 +15,7 @@ import { CfgService } from './cfg.service';
 export function remoteSettingsFactory(
   cfgService: CfgService
 ): () => Promise<any> {
-  return () => cfgService.loadRemoteOptions();
+  return () => cfgService.fetchRemoteConfig();
 }
 
 // @dynamic
