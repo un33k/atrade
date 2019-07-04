@@ -1,56 +1,63 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { get, isEmpty, merge } from 'lodash';
 import { of as observableOf } from 'rxjs';
 import { timeout, catchError } from 'rxjs/operators';
+import { merge as ldNestedMerge } from 'lodash';
 
 import { AppCfg, HttpMethod } from './cfg.types';
-import { CFG_OPTIONS, DefaultAppCfg } from './cfg.defaults';
+import {
+  CFG_OPTIONS,
+  DefaultAppCfg,
+  DEFAULT_HTTP_TIMEOUT
+} from './cfg.defaults';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CfgService {
-  _options: AppCfg;
+  private _options: AppCfg;
 
   constructor(
     @Inject(CFG_OPTIONS) private appOptions: AppCfg,
     private http: HttpClient
   ) {
-    this._options = merge(DefaultAppCfg, appOptions);
+    this._options = ldNestedMerge(DefaultAppCfg, appOptions);
     if (!this.options.production) {
       console.log(`CfgService ready ...`);
     }
   }
 
   fetchRemoteConfig(): Promise<any> {
-    const rmtCfg = get(this._options, 'rmtCfg');
+    const rmtCfg = this._options.rmtCfg;
     if (rmtCfg) {
-      const url = get(rmtCfg, 'endpoint');
+      const url = rmtCfg.endpoint;
       if (url) {
         return new Promise((resolve, reject) => {
-          let headers = get(rmtCfg, 'headers', {});
-          if (!isEmpty(headers)) {
+          let headers = rmtCfg.headers || {};
+          if (!Object.keys(headers).length) {
             headers = new HttpHeaders(headers);
           }
-          const method = get(rmtCfg, 'method', HttpMethod.get);
-          let methodCall = this.http.get(url, { headers });
-          if (method === HttpMethod.post) {
-            const body = get(rmtCfg, 'body', {});
-            methodCall = this.http.post(url, body, { headers });
+          const httpMethod = rmtCfg.method || HttpMethod.get;
+          let httpRequest = this.http.get(url, { headers });
+          if (httpMethod === HttpMethod.post) {
+            const postBody = rmtCfg.body || {};
+            httpRequest = this.http.post(url, postBody, { headers });
           }
-          methodCall
+          const httpTimeout = (rmtCfg.timeout || DEFAULT_HTTP_TIMEOUT) * 1000;
+          httpRequest
             .pipe(
-              timeout(rmtCfg.timeout * 1000),
+              timeout(httpTimeout),
               catchError((err: Response) => {
-                console.warn(`CfgService failed. (${get(err, 'message')})`);
+                console.warn(
+                  `CfgService failed. (${err.statusText || 'unknown'})`
+                );
                 return observableOf({});
               })
             )
             .toPromise()
             .then(resp => {
-              if (!isEmpty(resp)) {
+              if (Object.keys(resp || {}).length) {
                 if (!this._options.production) {
                   console.log(`CfgService remote cfg fetched ...`);
                 }

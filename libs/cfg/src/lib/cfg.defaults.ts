@@ -2,6 +2,9 @@ import { InjectionToken } from '@angular/core';
 
 import { Cfg, HttpMethod, RemoteCfg, AppCfg, TargetPlatform } from './cfg.types';
 
+/** Default emote http call timeout */
+export const DEFAULT_HTTP_TIMEOUT = 3;
+
 export const DefaultCfg: Cfg = {
   multiTab: true,
   loginPageUrl: '/auth/login',
@@ -13,7 +16,7 @@ export const DefaultCfg: Cfg = {
 export const DefaultRemoteCfg: RemoteCfg = {
   endpoint: null,
   method: HttpMethod.get,
-  timeout: 2, // seconds
+  timeout: DEFAULT_HTTP_TIMEOUT,
   headers: { 'Content-Type': 'application/json' },
   body: {}
 };

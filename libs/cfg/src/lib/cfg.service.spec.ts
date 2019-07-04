@@ -6,7 +6,7 @@ import {
 
 import { CfgService } from './cfg.service';
 import { AppCfg, HttpMethod } from './cfg.types';
-import { CFG_OPTIONS } from './cfg.defaults';
+import { CFG_OPTIONS, DEFAULT_HTTP_TIMEOUT } from './cfg.defaults';
 import { CfgModule } from './cfg.module';
 
 const AppEnv: AppCfg = {
@@ -32,24 +32,24 @@ describe('CfgService local config', () => {
     expect(service).toBeDefined();
   }));
 
-  it('should be have the version options', inject(
+  it('should have the version options', inject(
     [CfgService],
     (service: CfgService) => {
       expect(service.options.version).toBe('1.0.1');
     }
   ));
 
-  it('should be have merged the default config options', inject(
+  it('should have merged the default config options', inject(
     [CfgService],
     (service: CfgService) => {
       expect(service.options.cfg.loginPageUrl).toBe('/auth/login');
     }
   ));
 
-  it('should be have merged the default rmt config options', inject(
+  it('should have merged the default options with the remote options', inject(
     [CfgService],
     (service: CfgService) => {
-      expect(service.options.rmtCfg.timeout).toBe(2);
+      expect(service.options.rmtCfg.timeout).toEqual(DEFAULT_HTTP_TIMEOUT);
     }
   ));
 });

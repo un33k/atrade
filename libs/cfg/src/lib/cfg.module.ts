@@ -6,7 +6,7 @@ import {
   APP_INITIALIZER
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppCfg } from './cfg.types';
 import { CFG_OPTIONS } from './cfg.defaults';
