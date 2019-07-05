@@ -201,16 +201,16 @@
     },
     "cfg": {
       "projectType": "library",
-      "root": "libs/cfg",
-      "sourceRoot": "libs/cfg/src",
+      "root": "libs/ng/common/cfg",
+      "sourceRoot": "libs/ng/common/cfg/src",
       "prefix": "nwx",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/cfg/tsconfig.lib.json",
-              "libs/cfg/tsconfig.spec.json"
+              "libs/ng/common/cfg/tsconfig.lib.json",
+              "libs/ng/common/cfg/tsconfig.spec.json"
             ],
             "exclude": ["**/node_modules/**"]
           }
@@ -218,9 +218,9 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/cfg/jest.config.js",
-            "tsConfig": "libs/cfg/tsconfig.spec.json",
-            "setupFile": "libs/cfg/src/test-setup.ts"
+            "jestConfig": "libs/ng/common/cfg/jest.config.js",
+            "tsConfig": "libs/ng/common/cfg/tsconfig.spec.json",
+            "setupFile": "libs/ng/common/cfg/src/test-setup.ts"
           }
         }
       },

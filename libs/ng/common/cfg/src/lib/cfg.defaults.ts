@@ -1,6 +1,12 @@
 import { InjectionToken } from '@angular/core';
 
-import { Cfg, HttpMethod, RemoteCfg, AppCfg, TargetPlatform } from './cfg.types';
+import {
+  Cfg,
+  HttpMethod,
+  RemoteCfg,
+  AppCfg,
+  TargetPlatform
+} from './cfg.types';
 
 /** Default emote http call timeout */
 export const DEFAULT_HTTP_TIMEOUT = 3;

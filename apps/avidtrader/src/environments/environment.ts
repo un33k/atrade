@@ -2,7 +2,7 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-import { AppCfg } from '@avidtrader/cfg';
+import { AppCfg } from '@ngpx/common/cfg';
 
 export const environment: AppCfg = {
   version: '0.0.2',

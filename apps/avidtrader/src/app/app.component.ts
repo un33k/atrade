@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Message } from '@avidtrader/api-interface';
-import { CfgService } from '@avidtrader/cfg';
+import { Message } from '@ngpx/api-interface';
+import { CfgService } from '@ngpx/common/cfg';
 
 @Component({
   selector: 'avidtrader-root',

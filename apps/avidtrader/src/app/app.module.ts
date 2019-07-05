@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
-import { CfgModule } from '@avidtrader/cfg';
+import { CfgModule } from '@ngpx/common/cfg';
 import { environment } from '../environments/environment';
 
 @NgModule({
