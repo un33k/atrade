@@ -75,7 +75,7 @@ export class CfgService {
   }
 
   /**
-   * Make private options public (readonly)
+   * Makes readonly copy of initializedOptions public
    */
   get options() {
     return this.initializedOptions;
