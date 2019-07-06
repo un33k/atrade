@@ -22,6 +22,9 @@
     },
     "ng-ag-cfg": {
       "tags": []
+    },
+    "ag-utils": {
+      "tags": []
     }
   }
 }
