@@ -17,6 +17,12 @@ const AppEnv: AppCfg = {
   }
 };
 
+const mockRemoteData = {
+  country: 'US',
+  state: 'California',
+  splash: 'https://foo.com/election.gif'
+};
+
 describe('CfgService local config', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -54,7 +60,46 @@ describe('CfgService local config', () => {
   ));
 });
 
-describe('CfgService remote confign via GET', () => {
+describe('CfgService remote cfg - empty rmtCfg', () => {
+  let injector: TestBed;
+  let service: CfgService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [
+        {
+          provide: CFG_OPTIONS,
+          useValue: {
+            ...AppEnv,
+            rmtCfg: null
+          }
+        },
+        CfgService
+      ]
+    });
+
+    injector = getTestBed();
+    service = injector.get(CfgService);
+
+    // disable console warn during test
+    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+  });
+
+  afterEach(() => {
+    service.options.rmtData = null;
+  });
+
+  it('should remote config fetch to handle empty rmtCfg', () => {
+    expect(service.options.rmtCfg).toEqual(null);
+
+    service.fetchRemoteConfig().then(() => {
+      expect(service.options.rmtData).toEqual({});
+    });
+  });
+});
+
+describe('CfgService remote config via GET', () => {
   let injector: TestBed;
   let service: CfgService;
   let httpMock: HttpTestingController;
@@ -79,12 +124,6 @@ describe('CfgService remote confign via GET', () => {
   });
 
   it('should get remote config via GET', () => {
-    const mockRemoteData = {
-      country: 'US',
-      state: 'California',
-      splash: 'https://foo.com/election.gif'
-    };
-
     service.fetchRemoteConfig().then(() => {
       expect(service.options.rmtData).toEqual(mockRemoteData);
     });
@@ -108,7 +147,7 @@ describe('CfgService remote confign via GET', () => {
   });
 });
 
-describe('CfgService remote config via POSt', () => {
+describe('CfgService remote config via POST', () => {
   let injector: TestBed;
   let service: CfgService;
   let httpMock: HttpTestingController;
@@ -142,19 +181,6 @@ describe('CfgService remote config via POSt', () => {
   });
 
   it('should get remote config via POST', () => {
-    const mockRemoteData = {
-      country: 'US',
-      state: 'California',
-      splash: 'https://foo.com/election.gif'
-    };
-
-    injector.overrideProvider(CFG_OPTIONS, {
-      useValue: {
-        ...AppEnv,
-        rmtCfg: { ...AppEnv.rmtCfg, method: HttpMethod.post }
-      }
-    });
-
     expect(service.options.rmtCfg.method).toBe(HttpMethod.post);
 
     service.fetchRemoteConfig().then(() => {
@@ -164,6 +190,55 @@ describe('CfgService remote config via POSt', () => {
     const mockReq = httpMock.expectOne(service.options.rmtCfg.endpoint);
     expect(mockReq.cancelled).toBeFalsy();
     expect(mockReq.request.method).toEqual('POST');
+    expect(mockReq.request.responseType).toEqual('json');
+    mockReq.flush(mockRemoteData);
+  });
+});
+
+describe('CfgService remote config in dev mode w/o headers', () => {
+  let injector: TestBed;
+  let service: CfgService;
+  let httpMock: HttpTestingController;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [
+        {
+          provide: CFG_OPTIONS,
+          useValue: {
+            ...AppEnv,
+            production: false,
+            rmtCfg: { ...AppEnv.rmtCfg, method: HttpMethod.get, headers: {} }
+          }
+        },
+        CfgService
+      ]
+    });
+
+    injector = getTestBed();
+    service = injector.get(CfgService);
+    httpMock = injector.get(HttpTestingController);
+
+    // disable console warn during test
+    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+  });
+
+  afterEach(() => {
+    service.options.rmtData = null;
+    httpMock.verify();
+  });
+
+  it('should get remote config in dev mode w/o headers', () => {
+    expect(service.options.rmtCfg.method).toBe(HttpMethod.get);
+
+    service.fetchRemoteConfig().then(() => {
+      expect(service.options.rmtData).toEqual(mockRemoteData);
+    });
+
+    const mockReq = httpMock.expectOne(service.options.rmtCfg.endpoint);
+    expect(mockReq.cancelled).toBeFalsy();
+    expect(mockReq.request.method).toEqual('GET');
     expect(mockReq.request.responseType).toEqual('json');
     mockReq.flush(mockRemoteData);
   });
