@@ -20,7 +20,7 @@
     "api-interface": {
       "tags": []
     },
-    "cfg": {
+    "ng-ag-cfg": {
       "tags": []
     }
   }

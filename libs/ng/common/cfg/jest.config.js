@@ -1,7 +1,7 @@
 module.exports = {
-  name: 'cfg',
+  name: 'ngagx-cfg',
   preset: '../../../../jest.config.js',
-  coverageDirectory: '../../../../coverage/libs/cfg',
+  coverageDirectory: '../../../../coverage/libs/ng/common/cfg',
   snapshotSerializers: [
     'jest-preset-angular/AngularSnapshotSerializer.js',
     'jest-preset-angular/HTMLCommentSerializer.js'

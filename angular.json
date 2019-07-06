@@ -199,12 +199,19 @@
         }
       }
     },
-    "cfg": {
+    "ng-ag-cfg": {
       "projectType": "library",
       "root": "libs/ng/common/cfg",
       "sourceRoot": "libs/ng/common/cfg/src",
-      "prefix": "nwx",
+      "prefix": "avidtrader",
       "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/ng/common/cfg/tsconfig.lib.json",
+            "project": "libs/ng/common/cfg/ng-package.json"
+          }
+        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
