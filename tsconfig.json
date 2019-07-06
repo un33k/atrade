@@ -17,7 +17,7 @@
     "baseUrl": ".",
     "paths": {
       "@ngpx/api-interface": ["libs/api-interface/src/index.ts"],
-      "@ngagx/cfg": ["libs/ng/common/cfg/src/index.ts"]
+      "@ngagx/cfg": ["libs/ng/ag/cfg/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

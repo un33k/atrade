@@ -201,23 +201,23 @@
     },
     "ng-ag-cfg": {
       "projectType": "library",
-      "root": "libs/ng/common/cfg",
-      "sourceRoot": "libs/ng/common/cfg/src",
+      "root": "libs/ng/ag/cfg",
+      "sourceRoot": "libs/ng/ag/cfg/src",
       "prefix": "avidtrader",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "libs/ng/common/cfg/tsconfig.lib.json",
-            "project": "libs/ng/common/cfg/ng-package.json"
+            "tsConfig": "libs/ng/ag/cfg/tsconfig.lib.json",
+            "project": "libs/ng/ag/cfg/ng-package.json"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/ng/common/cfg/tsconfig.lib.json",
-              "libs/ng/common/cfg/tsconfig.spec.json"
+              "libs/ng/ag/cfg/tsconfig.lib.json",
+              "libs/ng/ag/cfg/tsconfig.spec.json"
             ],
             "exclude": ["**/node_modules/**"]
           }
@@ -225,9 +225,9 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/ng/common/cfg/jest.config.js",
-            "tsConfig": "libs/ng/common/cfg/tsconfig.spec.json",
-            "setupFile": "libs/ng/common/cfg/src/test-setup.ts"
+            "jestConfig": "libs/ng/ag/cfg/jest.config.js",
+            "tsConfig": "libs/ng/ag/cfg/tsconfig.spec.json",
+            "setupFile": "libs/ng/ag/cfg/src/test-setup.ts"
           }
         }
       },

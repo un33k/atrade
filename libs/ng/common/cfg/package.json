@@ -1,8 +1,0 @@
-{
-  "name": "@ngagx/cfg",
-  "description": "A simple configuration module for an angular app",
-  "peerDependencies": {
-    "@angular/core": "^7.0.0 || ^8.0.0 || ^9.0.0-0",
-    "lodash": "^4.17.11"
-  }
-}
