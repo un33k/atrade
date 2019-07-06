@@ -30,7 +30,7 @@ describe('CfgService local config', () => {
       providers: [{ provide: CFG_OPTIONS, useValue: AppEnv }, CfgService]
     });
 
-    // disable console warn during test
+    // disable console log during test
     jest.spyOn(console, 'log').mockImplementation(() => undefined);
   });
 

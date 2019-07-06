@@ -1,4 +1,4 @@
-import { tryGet } from './get';
+import { tryGet } from './ag-get';
 
 interface D {
   name: string;

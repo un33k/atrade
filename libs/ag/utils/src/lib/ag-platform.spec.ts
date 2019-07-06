@@ -1,4 +1,4 @@
-import { isBrowser, isElectron, isIOS, isAndriod } from './platform';
+import { isBrowser, isElectron, isIOS, isAndriod } from './ag-platform';
 
 describe('Agnostic Utils - Platform', function() {
   it('should return false as we are not running on a browser', function() {

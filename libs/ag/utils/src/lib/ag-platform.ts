@@ -1,4 +1,4 @@
-import { isDefined } from './types';
+import { isDefined } from './ag-types';
 
 /** Electron - window (chrome) */
 declare var window;

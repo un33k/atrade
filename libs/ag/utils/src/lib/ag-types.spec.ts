@@ -1,4 +1,4 @@
-import { isString, isObject, isDefined } from './types';
+import { isString, isObject, isDefined } from './ag-types';
 
 describe('Agnostic Utils - Types', function() {
   it('should return true when isString arg is a string', function() {

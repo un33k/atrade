@@ -25,6 +25,9 @@
     },
     "ag-utils": {
       "tags": []
+    },
+    "ag-base": {
+      "tags": []
     }
   }
 }

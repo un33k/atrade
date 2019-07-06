@@ -1,3 +1,3 @@
-export * from './lib/types';
-export * from './lib/get';
-export * from './lib/platform';
+export * from './lib/ag-types';
+export * from './lib/ag-get';
+export * from './lib/ag-platform';
