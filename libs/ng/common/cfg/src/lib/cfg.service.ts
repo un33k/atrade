@@ -5,7 +5,7 @@ import { of as observableOf } from 'rxjs';
 import { timeout, catchError } from 'rxjs/operators';
 import { merge as ldNestedMerge } from 'lodash';
 
-import { AppCfg, HttpMethod } from './cfg.types';
+import { AppCfg, HttpMethod } from './cfg.models';
 import {
   CFG_OPTIONS,
   DefaultAppCfg,
@@ -16,20 +16,23 @@ import {
   providedIn: 'root'
 })
 export class CfgService {
-  private _options: AppCfg;
+  private initializedOptions: AppCfg;
 
   constructor(
     @Inject(CFG_OPTIONS) private appOptions: AppCfg,
     private http: HttpClient
   ) {
-    this._options = ldNestedMerge(DefaultAppCfg, appOptions);
+    this.initializedOptions = ldNestedMerge(DefaultAppCfg, appOptions);
     if (!this.options.production) {
       console.log(`CfgService ready ...`);
     }
   }
 
+  /**
+   * Fetches remote configuration options via get or post
+   */
   fetchRemoteConfig(): Promise<any> {
-    const rmtCfg = this._options.rmtCfg;
+    const rmtCfg = this.initializedOptions.rmtCfg;
     if (rmtCfg) {
       const url = rmtCfg.endpoint;
       if (url) {
@@ -58,10 +61,10 @@ export class CfgService {
             .toPromise()
             .then(resp => {
               if (Object.keys(resp || {}).length) {
-                if (!this._options.production) {
+                if (!this.initializedOptions.production) {
                   console.log(`CfgService remote cfg fetched ...`);
                 }
-                this._options.rmtData = resp;
+                this.initializedOptions.rmtData = resp;
               }
               resolve(resp);
             });
@@ -71,7 +74,10 @@ export class CfgService {
     return new Promise((resolve, reject) => resolve({}));
   }
 
+  /**
+   * Make private options public (readonly)
+   */
   get options() {
-    return this._options;
+    return this.initializedOptions;
   }
 }

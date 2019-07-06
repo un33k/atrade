@@ -5,7 +5,7 @@ import {
 } from '@angular/common/http/testing';
 
 import { CfgService } from './cfg.service';
-import { AppCfg, HttpMethod } from './cfg.types';
+import { AppCfg, HttpMethod } from './cfg.models';
 import { CFG_OPTIONS, DEFAULT_HTTP_TIMEOUT } from './cfg.defaults';
 import { CfgModule } from './cfg.module';
 

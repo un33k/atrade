@@ -6,7 +6,7 @@ import {
   RemoteCfg,
   AppCfg,
   TargetPlatform
-} from './cfg.types';
+} from './cfg.models';
 
 /** Default emote http call timeout */
 export const DEFAULT_HTTP_TIMEOUT = 3;

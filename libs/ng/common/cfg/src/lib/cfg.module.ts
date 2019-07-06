@@ -8,7 +8,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AppCfg } from './cfg.types';
+import { AppCfg } from './cfg.models';
 import { CFG_OPTIONS } from './cfg.defaults';
 import { CfgService } from './cfg.service';
 
