@@ -8,9 +8,10 @@ import {
   TargetPlatform
 } from './cfg.models';
 
-/** Default emote http call timeout */
+/** Default remote http call timeout */
 export const DEFAULT_HTTP_TIMEOUT = 3;
 
+/** Default local config */
 export const DefaultCfg: Cfg = {
   multiTab: true,
   loginPageUrl: '/auth/login',
@@ -19,6 +20,7 @@ export const DefaultCfg: Cfg = {
   loggedOutRedirectUrl: '/'
 };
 
+/** Default remote config fetch */
 export const DefaultRemoteCfg: RemoteCfg = {
   endpoint: null,
   method: HttpMethod.get,
@@ -27,6 +29,7 @@ export const DefaultRemoteCfg: RemoteCfg = {
   body: {}
 };
 
+/** Default application-wide config */
 export const DefaultAppCfg: AppCfg = {
   version: '0.0.1',
   production: false,
@@ -37,5 +40,5 @@ export const DefaultAppCfg: AppCfg = {
   rmtData: {}
 };
 
-/** App configuration options */
+/** App configuration options token */
 export const CFG_OPTIONS = new InjectionToken<string>('CFG_OPTIONS');
