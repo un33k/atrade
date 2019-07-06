@@ -1,6 +1,10 @@
-# Angular Agnostic Cfg (ng-ag-cfg)
+# Angular Agnostic Configuration (ng-ag-cfg)
 
-This library was generated with [Nx](https://nx.dev).
+Supports:
+
+- Web (Browsers)
+- Mobile (NativeScript, Ionic)
+- Desktop (Electron)
 
 ## Running unit tests
 
