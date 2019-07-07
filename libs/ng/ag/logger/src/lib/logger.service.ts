@@ -27,7 +27,7 @@ export class LoggerService extends BaseLogger {
         navigator.userAgent.indexOf('MSIE') !== -1
       );
     }
-    if (!this.cfgService.options.cfg.production) {
+    if (!this.cfgService.options.production) {
       this.debug(`LogService ready ... (${platformId})`);
     }
   }

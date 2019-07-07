@@ -16,7 +16,7 @@ export class CfgService {
 
   constructor(private http: HttpClient, @Inject(CFG_OPTIONS) private appCfg: AppCfg) {
     this.initializedOptions = ldNestedMerge(DefaultAppCfg, appCfg);
-    if (!this.options.production) {
+    if (!this.initializedOptions.production) {
       console.log(`CfgService ready ...`);
     }
   }
