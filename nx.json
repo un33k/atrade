@@ -8,10 +8,10 @@
     "nx.json": "*"
   },
   "projects": {
-    "avidtrader-e2e": {
+    "wb.avidtrader-e2e": {
       "tags": []
     },
-    "avidtrader": {
+    "wb.avidtrader": {
       "tags": []
     },
     "api": {
