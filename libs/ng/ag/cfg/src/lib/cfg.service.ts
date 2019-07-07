@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { merge as ldNestedMerge } from 'lodash';
+import { merge as ldNestedMerge } from 'lodash-es';
 import { of as observableOf } from 'rxjs';
 import { timeout, catchError } from 'rxjs/operators';
 

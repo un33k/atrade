@@ -5,7 +5,7 @@
     "entryFile": "src/index.ts",
     "flatModuleFile": "ngag-cfg",
     "umdModuleIds": {
-      "lodash": "lodash"
+      "lodash-es": "lodash-es"
     }
   }
 }

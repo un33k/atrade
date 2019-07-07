@@ -1,7 +1,7 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
-import { merge as ldNestedMerge } from 'lodash';
+import { merge as ldNestedMerge } from 'lodash-es';
 import { BaseLogger } from '@agx/base';
 import { CfgService } from '@ngagx/cfg';
 
