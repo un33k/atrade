@@ -1,4 +1,4 @@
-# Angular Agnostic Configuration (ng-ag-cfg)
+# Angular Agnostic Configuration (ngag-cfg)
 
 Supports:
 
@@ -8,4 +8,4 @@ Supports:
 
 ## Running unit tests
 
-Run `ng test ng-ag-cfg` to execute the unit tests.
+Run `ng test ngag-cfg` to execute the unit tests.

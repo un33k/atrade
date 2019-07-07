@@ -199,7 +199,7 @@
         }
       }
     },
-    "ng-ag-cfg": {
+    "ngag-cfg": {
       "projectType": "library",
       "root": "libs/ng/ag/cfg",
       "sourceRoot": "libs/ng/ag/cfg/src",

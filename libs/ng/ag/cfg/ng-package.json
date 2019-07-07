@@ -3,7 +3,7 @@
   "dest": "../../../../dist/libs/ng/ag/cfg",
   "lib": {
     "entryFile": "src/index.ts",
-    "flatModuleFile": "ngagx-cfg",
+    "flatModuleFile": "ngag-cfg",
     "umdModuleIds": {
       "lodash": "lodash"
     }
