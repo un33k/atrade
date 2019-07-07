@@ -28,7 +28,7 @@ export class LoggerService extends BaseLogger {
       );
     }
     if (!this.cfgService.options.cfg.production) {
-      console.log(`LogService ready ...`);
+      this.debug(`LogService ready ... (${platformId})`);
     }
   }
 

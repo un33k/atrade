@@ -20,15 +20,16 @@ const mockRemoteData = {
   splash: 'https://foo.com/election.gif'
 };
 
+// disable console log/warn during test
+jest.spyOn(console, 'log').mockImplementation(() => undefined);
+jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+
 describe('CfgService local config', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, CfgModule.forRoot(AppEnv)],
       providers: [{ provide: CFG_OPTIONS, useValue: AppEnv }, CfgService]
     });
-
-    // disable console log during test
-    jest.spyOn(console, 'log').mockImplementation(() => undefined);
   });
 
   it('should be created', inject([CfgService], (service: CfgService) => {
@@ -69,9 +70,6 @@ describe('CfgService remote cfg - empty rmtCfg', () => {
 
     injector = getTestBed();
     service = injector.get(CfgService);
-
-    // disable console warn during test
-    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
   });
 
   afterEach(() => {
@@ -101,9 +99,6 @@ describe('CfgService remote config via GET', () => {
     injector = getTestBed();
     service = injector.get(CfgService);
     httpMock = injector.get(HttpTestingController);
-
-    // disable console warn during test
-    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
   });
 
   afterEach(() => {
@@ -158,9 +153,6 @@ describe('CfgService remote config via POST', () => {
     injector = getTestBed();
     service = injector.get(CfgService);
     httpMock = injector.get(HttpTestingController);
-
-    // disable console warn during test
-    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
   });
 
   afterEach(() => {
@@ -207,9 +199,6 @@ describe('CfgService remote config in dev mode w/o headers', () => {
     injector = getTestBed();
     service = injector.get(CfgService);
     httpMock = injector.get(HttpTestingController);
-
-    // disable console warn during test
-    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
   });
 
   afterEach(() => {

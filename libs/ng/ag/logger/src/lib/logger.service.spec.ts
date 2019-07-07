@@ -12,6 +12,9 @@ const AppEnv: AppCfg = {
   version: '1.0.1'
 };
 
+// disable console log during test
+jest.spyOn(console, 'log').mockImplementation(() => undefined);
+
 describe('LoggerService - Default Cfg', () => {
   let service: LoggerService;
 
@@ -22,9 +25,6 @@ describe('LoggerService - Default Cfg', () => {
     });
 
     service = TestBed.get(LoggerService);
-
-    // disable console log during test
-    // jest.spyOn(console, 'log').mockImplementation(() => undefined);
   });
 
   it('should be created', () => {
@@ -50,9 +50,6 @@ describe('LoggerService - LoggerCfg', () => {
     });
 
     service = TestBed.get(LoggerService);
-
-    // disable console log during test
-    // jest.spyOn(console, 'log').mockImplementation(() => undefined);
   });
 
   it('should have local config match app-level config', () => {

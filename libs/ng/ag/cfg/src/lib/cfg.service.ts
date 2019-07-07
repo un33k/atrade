@@ -21,9 +21,7 @@ export class CfgService {
     }
   }
 
-  /**
-   * Fetches remote configuration options via get or post
-   */
+  /** Fetches remote configuration options via get or post */
   fetchRemoteConfig(): Promise<any> {
     const rmtCfg = this.initializedOptions.rmtCfg;
     if (rmtCfg) {
