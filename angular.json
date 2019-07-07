@@ -3,35 +3,35 @@
   "version": 1,
   "newProjectRoot": "",
   "projects": {
-    "wb.avidtrader": {
+    "wb-avidtrader": {
       "projectType": "application",
       "schematics": {
         "@nrwl/workspace:component": {
           "style": "scss"
         }
       },
-      "root": "apps/wb.avidtrader",
-      "sourceRoot": "apps/wb.avidtrader/src",
+      "root": "apps/wb-avidtrader",
+      "sourceRoot": "apps/wb-avidtrader/src",
       "prefix": "avidtrader",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/wb.avidtrader",
-            "index": "apps/wb.avidtrader/src/index.html",
-            "main": "apps/wb.avidtrader/src/main.ts",
-            "polyfills": "apps/wb.avidtrader/src/polyfills.ts",
-            "tsConfig": "apps/wb.avidtrader/tsconfig.app.json",
-            "assets": ["apps/wb.avidtrader/src/favicon.ico", "apps/wb.avidtrader/src/assets"],
-            "styles": ["apps/wb.avidtrader/src/styles.scss"],
+            "outputPath": "dist/apps/wb-avidtrader",
+            "index": "apps/wb-avidtrader/src/index.html",
+            "main": "apps/wb-avidtrader/src/main.ts",
+            "polyfills": "apps/wb-avidtrader/src/polyfills.ts",
+            "tsConfig": "apps/wb-avidtrader/tsconfig.app.json",
+            "assets": ["apps/wb-avidtrader/src/favicon.ico", "apps/wb-avidtrader/src/assets"],
+            "styles": ["apps/wb-avidtrader/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/wb.avidtrader/src/environments/environment.ts",
-                  "with": "apps/wb.avidtrader/src/environments/environment.prod.ts"
+                  "replace": "apps/wb-avidtrader/src/environments/environment.ts",
+                  "with": "apps/wb-avidtrader/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -56,60 +56,60 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "wb.avidtrader:build",
-            "proxyConfig": "apps/wb.avidtrader/proxy.conf.json"
+            "browserTarget": "wb-avidtrader:build",
+            "proxyConfig": "apps/wb-avidtrader/proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "wb.avidtrader:build:production"
+              "browserTarget": "wb-avidtrader:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "wb.avidtrader:build"
+            "browserTarget": "wb-avidtrader:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/wb.avidtrader/tsconfig.app.json", "apps/wb.avidtrader/tsconfig.spec.json"],
+            "tsConfig": ["apps/wb-avidtrader/tsconfig.app.json", "apps/wb-avidtrader/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/wb.avidtrader/jest.config.js",
-            "tsConfig": "apps/wb.avidtrader/tsconfig.spec.json",
-            "setupFile": "apps/wb.avidtrader/src/test-setup.ts"
+            "jestConfig": "apps/wb-avidtrader/jest.config.js",
+            "tsConfig": "apps/wb-avidtrader/tsconfig.spec.json",
+            "setupFile": "apps/wb-avidtrader/src/test-setup.ts"
           }
         }
       }
     },
-    "wb.avidtrader-e2e": {
-      "root": "apps/wb.avidtrader-e2e",
-      "sourceRoot": "apps/wb.avidtrader-e2e/src",
+    "wb-avidtrader-e2e": {
+      "root": "apps/wb-avidtrader-e2e",
+      "sourceRoot": "apps/wb-avidtrader-e2e/src",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/wb.avidtrader-e2e/cypress.json",
-            "tsConfig": "apps/wb.avidtrader-e2e/tsconfig.e2e.json",
-            "devServerTarget": "wb.avidtrader:serve"
+            "cypressConfig": "apps/wb-avidtrader-e2e/cypress.json",
+            "tsConfig": "apps/wb-avidtrader-e2e/tsconfig.e2e.json",
+            "devServerTarget": "wb-avidtrader:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "wb.avidtrader:serve:production"
+              "devServerTarget": "wb-avidtrader:serve:production"
             }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "apps/wb.avidtrader-e2e/tsconfig.e2e.json"
+            "tsConfig": "apps/wb-avidtrader-e2e/tsconfig.e2e.json"
           }
         }
       }
@@ -311,5 +311,5 @@
       "unitTestRunner": "jest"
     }
   },
-  "defaultProject": "wb.avidtrader"
+  "defaultProject": "wb-avidtrader"
 }

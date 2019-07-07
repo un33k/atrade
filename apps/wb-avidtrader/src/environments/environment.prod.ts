@@ -3,7 +3,7 @@ import { LoggerCfg } from '@ngagx/logger';
 import { LogLevel } from '@agx/base';
 
 const loggerCfg: LoggerCfg = {
-  level: LogLevel.debug
+  level: LogLevel.error
 };
 
 export const environment: AppCfg = {
