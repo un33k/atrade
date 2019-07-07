@@ -1,4 +1,4 @@
-export * from './lib/logger.models';
-export * from './lib/logger.defaults';
-export * from './lib/logger.module';
-export * from './lib/logger.service';
+export { LoggerCfg } from './lib/logger.models';
+export { DefaultLogCfg } from './lib/logger.defaults';
+export { LoggerModule } from './lib/logger.module';
+export { LoggerService } from './lib/logger.service';

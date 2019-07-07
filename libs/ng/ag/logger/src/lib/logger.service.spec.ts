@@ -1,10 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
 import { LogLevel } from '@agx/base';
-import { AppCfg, CfgModule, CfgService } from '@ngagx/cfg';
+import { CFG_OPTIONS, AppCfg, CfgModule, CfgService } from '@ngagx/cfg';
 
 import { LoggerService } from './logger.service';
-import { CFG_OPTIONS } from 'libs/ng/ag/cfg/src/lib/cfg.defaults';
 
 const AppEnv: AppCfg = {
   appName: '@nwx/logger',

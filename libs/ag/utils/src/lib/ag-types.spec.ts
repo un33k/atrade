@@ -28,8 +28,12 @@ describe('Agnostic Utils - Types', function() {
   });
 
   it('should return false if isDefined arg is not defined', function() {
-    let definedConst;
-    const value = isDefined(definedConst);
+    let definable;
+    let value = isDefined(definable);
     expect(value).toBe(false);
+
+    definable = 'now-defined';
+    value = isDefined(definable);
+    expect(value).toBe(true);
   });
 });
