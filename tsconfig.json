@@ -17,10 +17,10 @@
     "baseUrl": ".",
     "paths": {
       "@ngpx/api-interface": ["libs/api-interface/src/index.ts"],
-      "@ngagx/cfg": ["libs/ng/ag/cfg/src/index.ts"],
       "@agx/utils": ["libs/ag/utils/src/index.ts"],
       "@agx/base": ["libs/ag/base/src/index.ts"],
-      "@avidtrader/ng/ag/logger": ["libs/ng/ag/logger/src/index.ts"]
+      "@ngagx/cfg": ["libs/ng/ag/cfg/src/index.ts"],
+      "@ngagx/logger": ["libs/ng/ag/logger/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
