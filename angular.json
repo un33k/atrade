@@ -262,6 +262,37 @@
           }
         }
       }
+    },
+    "ngag-logger": {
+      "projectType": "library",
+      "root": "libs/ng/ag/logger",
+      "sourceRoot": "libs/ng/ag/logger/src",
+      "prefix": "avidtrader",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/ng/ag/logger/tsconfig.lib.json",
+            "project": "libs/ng/ag/logger/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/ng/ag/logger/tsconfig.lib.json", "libs/ng/ag/logger/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ng/ag/logger/jest.config.js",
+            "tsConfig": "libs/ng/ag/logger/tsconfig.spec.json",
+            "setupFile": "libs/ng/ag/logger/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
     }
   },
   "cli": {

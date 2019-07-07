@@ -1,7 +1,4 @@
-/**
- * Log level
- * Each level enables itself and all level(s) above except none
- */
+/** Log level - Each level enables itself and all level(s) above except none */
 export enum LogLevel {
   critical = 0,
   error,
@@ -25,9 +22,9 @@ export const LogColors = ['red', 'OrangeRed ', 'orange', 'teal', 'SlateGrey'];
  * An base class that handles logging service
  */
 export abstract class BaseLogger {
-  private platformIsIE = false;
+  protected platformIsIE = false;
 
-  constructor(private appLogLevel: LogLevel = LogLevel.none) {}
+  constructor(protected appLogLevel: LogLevel = LogLevel.none) {}
 
   /**
    * Handles mission critical logs
@@ -90,42 +87,12 @@ export abstract class BaseLogger {
   private log(level: LogLevel, message: any, extras: any[] = []) {
     const logOff = !message || [level, this.appLogLevel].includes(LogLevel.none);
     if (!logOff) {
-      console.log(message, level);
       if (this.platformIsIE) {
-        this.logIE(level, message, extras);
+        console.log(`%c${this.time} [${LogNames[level]}]`, message, ...extras);
       } else {
         const color = LogColors[level];
         console.log(`%c${this.time} [${LogNames[level]}]`, `color:${color}`, message, ...extras);
       }
     }
-  }
-
-  /**
-   * Handles the platform logging on IE
-   * @param level logging level
-   * @param message logging message
-   * @param extras extra message
-   * Note: NativeScript doesn't have console.debug
-   */
-  private logIE(level: LogLevel, message: any, extras: any[] = []) {
-    let logger = console.log;
-    switch (level) {
-      case LogLevel.critical:
-      case LogLevel.error:
-        logger = console.error || console.log;
-        break;
-      case LogLevel.warn:
-        logger = console.warn || console.log;
-        break;
-      case LogLevel.info:
-        logger = console.info || console.log;
-        break;
-      case LogLevel.debug:
-        logger = console.debug || console.log;
-        break;
-      default:
-        return;
-    }
-    logger(`%c${this.time} [${LogNames[level]}]`, message, ...extras);
   }
 }

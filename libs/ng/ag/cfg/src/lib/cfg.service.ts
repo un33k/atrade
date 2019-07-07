@@ -1,9 +1,9 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+import { merge as ldNestedMerge } from 'lodash';
 import { of as observableOf } from 'rxjs';
 import { timeout, catchError } from 'rxjs/operators';
-import { merge as ldNestedMerge } from 'lodash';
 
 import { AppCfg, HttpMethod } from './cfg.models';
 import { CFG_OPTIONS, DefaultAppCfg, DEFAULT_HTTP_TIMEOUT } from './cfg.defaults';
@@ -14,8 +14,8 @@ import { CFG_OPTIONS, DefaultAppCfg, DEFAULT_HTTP_TIMEOUT } from './cfg.defaults
 export class CfgService {
   private initializedOptions: AppCfg;
 
-  constructor(@Inject(CFG_OPTIONS) private appOptions: AppCfg, private http: HttpClient) {
-    this.initializedOptions = ldNestedMerge(DefaultAppCfg, appOptions);
+  constructor(private http: HttpClient, @Inject(CFG_OPTIONS) private appCfg: AppCfg) {
+    this.initializedOptions = ldNestedMerge(DefaultAppCfg, appCfg);
     if (!this.options.production) {
       console.log(`CfgService ready ...`);
     }

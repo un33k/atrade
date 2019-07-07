@@ -28,6 +28,9 @@
     },
     "ag-base": {
       "tags": []
+    },
+    "ngag-logger": {
+      "tags": []
     }
   }
 }
