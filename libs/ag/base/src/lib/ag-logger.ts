@@ -88,20 +88,14 @@ export abstract class BaseLogger {
    * @param extras extra message
    */
   private log(level: LogLevel, message: any, extras: any[] = []) {
-    const logOff =
-      !message || [level, this.appLogLevel].includes(LogLevel.none);
+    const logOff = !message || [level, this.appLogLevel].includes(LogLevel.none);
     if (!logOff) {
       console.log(message, level);
       if (this.platformIsIE) {
         this.logIE(level, message, extras);
       } else {
         const color = LogColors[level];
-        console.log(
-          `%c${this.time} [${LogNames[level]}]`,
-          `color:${color}`,
-          message,
-          ...extras
-        );
+        console.log(`%c${this.time} [${LogNames[level]}]`, `color:${color}`, message, ...extras);
       }
     }
   }

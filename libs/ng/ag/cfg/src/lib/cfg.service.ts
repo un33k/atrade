@@ -6,11 +6,7 @@ import { timeout, catchError } from 'rxjs/operators';
 import { merge as ldNestedMerge } from 'lodash';
 
 import { AppCfg, HttpMethod } from './cfg.models';
-import {
-  CFG_OPTIONS,
-  DefaultAppCfg,
-  DEFAULT_HTTP_TIMEOUT
-} from './cfg.defaults';
+import { CFG_OPTIONS, DefaultAppCfg, DEFAULT_HTTP_TIMEOUT } from './cfg.defaults';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +14,7 @@ import {
 export class CfgService {
   private initializedOptions: AppCfg;
 
-  constructor(
-    @Inject(CFG_OPTIONS) private appOptions: AppCfg,
-    private http: HttpClient
-  ) {
+  constructor(@Inject(CFG_OPTIONS) private appOptions: AppCfg, private http: HttpClient) {
     this.initializedOptions = ldNestedMerge(DefaultAppCfg, appOptions);
     if (!this.options.production) {
       console.log(`CfgService ready ...`);
@@ -52,9 +45,7 @@ export class CfgService {
             .pipe(
               timeout(httpTimeout),
               catchError((err: Response) => {
-                console.warn(
-                  `CfgService failed. (${err.statusText || 'unknown'})`
-                );
+                console.warn(`CfgService failed. (${err.statusText || 'unknown'})`);
                 return observableOf({});
               })
             )

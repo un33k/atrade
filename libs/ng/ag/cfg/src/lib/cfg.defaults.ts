@@ -1,12 +1,6 @@
 import { InjectionToken } from '@angular/core';
 
-import {
-  Cfg,
-  HttpMethod,
-  RemoteCfg,
-  AppCfg,
-  TargetPlatform
-} from './cfg.models';
+import { Cfg, HttpMethod, RemoteCfg, AppCfg, TargetPlatform } from './cfg.models';
 
 /** Default remote http call timeout */
 export const DEFAULT_HTTP_TIMEOUT = 3;

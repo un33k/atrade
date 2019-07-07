@@ -1,8 +1,5 @@
 import { TestBed, inject, getTestBed } from '@angular/core/testing';
-import {
-  HttpClientTestingModule,
-  HttpTestingController
-} from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { CfgService } from './cfg.service';
 import { AppCfg, HttpMethod } from './cfg.models';
@@ -38,26 +35,17 @@ describe('CfgService local config', () => {
     expect(service).toBeDefined();
   }));
 
-  it('should have the version options', inject(
-    [CfgService],
-    (service: CfgService) => {
-      expect(service.options.version).toBe('1.0.1');
-    }
-  ));
+  it('should have the version options', inject([CfgService], (service: CfgService) => {
+    expect(service.options.version).toBe('1.0.1');
+  }));
 
-  it('should have merged the default config options', inject(
-    [CfgService],
-    (service: CfgService) => {
-      expect(service.options.cfg.loginPageUrl).toBe('/auth/login');
-    }
-  ));
+  it('should have merged the default config options', inject([CfgService], (service: CfgService) => {
+    expect(service.options.cfg.loginPageUrl).toBe('/auth/login');
+  }));
 
-  it('should have merged the default options with the remote options', inject(
-    [CfgService],
-    (service: CfgService) => {
-      expect(service.options.rmtCfg.timeout).toEqual(DEFAULT_HTTP_TIMEOUT);
-    }
-  ));
+  it('should have merged the default options with the remote options', inject([CfgService], (service: CfgService) => {
+    expect(service.options.rmtCfg.timeout).toEqual(DEFAULT_HTTP_TIMEOUT);
+  }));
 });
 
 describe('CfgService remote cfg - empty rmtCfg', () => {
