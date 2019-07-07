@@ -14,7 +14,7 @@ import { LoggerCfg } from './logger.models';
 export class LoggerService extends BaseLogger {
   private initializedOptions: LoggerCfg = DefaultLogCfg;
 
-  constructor(private cfgService: CfgService, @Inject(PLATFORM_ID) public platformId) {
+  constructor(public cfgService: CfgService, @Inject(PLATFORM_ID) public platformId) {
     super();
 
     this.initializedOptions = ldNestedMerge(DefaultLogCfg, cfgService.options.logger);
