@@ -6,6 +6,6 @@
     "@angular/common": "^8.0.0",
     "@angular/core": "^8.0.0",
     "lodash": "^4.17.11",
-    "@nwx/cfg": "^0.0.1"
+    "@ngagx/cfg": "^0.0.1"
   }
 }

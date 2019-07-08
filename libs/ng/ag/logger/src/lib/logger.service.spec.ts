@@ -13,7 +13,7 @@ const AppEnv: AppCfg = {
 };
 
 // disable console log during test
-// jest.spyOn(console, 'log').mockImplementation(() => undefined);
+jest.spyOn(console, 'log').mockImplementation(() => undefined);
 
 describe('LoggerService - Default Cfg', () => {
   let service: LoggerService;
