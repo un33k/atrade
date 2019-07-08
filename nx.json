@@ -31,6 +31,9 @@
     },
     "ngag-logger": {
       "tags": []
+    },
+    "ngag-jwt": {
+      "tags": []
     }
   }
 }

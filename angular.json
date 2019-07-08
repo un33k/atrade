@@ -294,6 +294,37 @@
         }
       },
       "schematics": {}
+    },
+    "ngag-jwt": {
+      "projectType": "library",
+      "root": "libs/ng/ag/jwt",
+      "sourceRoot": "libs/ng/ag/jwt/src",
+      "prefix": "avidtrader",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/ng/ag/jwt/tsconfig.lib.json",
+            "project": "libs/ng/ag/jwt/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/ng/ag/jwt/tsconfig.lib.json", "libs/ng/ag/jwt/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/ng/ag/jwt/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ng/ag/jwt/jest.config.js",
+            "tsConfig": "libs/ng/ag/jwt/tsconfig.spec.json",
+            "setupFile": "libs/ng/ag/jwt/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
     }
   },
   "cli": {

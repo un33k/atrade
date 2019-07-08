@@ -41,6 +41,7 @@
     "@nestjs/platform-express": "^6.2.4",
     "@nrwl/angular": "8.2.0",
     "core-js": "^2.5.4",
+    "js-base64": "^2.5.1",
     "lodash": "^4.17.11",
     "reflect-metadata": "^0.1.12",
     "rxjs": "~6.4.0",
@@ -48,7 +49,6 @@
     "zone.js": "^0.9.1"
   },
   "devDependencies": {
-    "jest-preset-angular": "7.0.0",
     "@angular-devkit/build-angular": "^0.800.0",
     "@angular-devkit/build-ng-packagr": "~0.800.0",
     "@angular/cli": "8.0.0",
@@ -67,6 +67,7 @@
     "cypress": "~3.3.1",
     "dotenv": "6.2.0",
     "jest": "24.1.0",
+    "jest-preset-angular": "7.0.0",
     "ng-packagr": "^5.1.0",
     "prettier": "1.16.4",
     "ts-jest": "24.0.0",

@@ -1,8 +1,11 @@
 {
   "name": "@ngagx/logger",
   "description": "A simple logger module for an angular app",
+  "version": "0.0.1",
   "peerDependencies": {
-    "@angular/core": "^7.0.0 || ^8.0.0 || ^9.0.0-0",
-    "lodash": "^4.17.11"
+    "@angular/common": "^8.0.0",
+    "@angular/core": "^8.0.0",
+    "lodash": "^4.17.11",
+    "@nwx/cfg": "^0.0.1"
   }
 }

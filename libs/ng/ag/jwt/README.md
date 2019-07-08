@@ -1,4 +1,4 @@
-# Angular Agnostic Logger (ngag-logger)
+# Angular Agnostic JWT Module (ngag-jwt)
 
 Supports:
 
@@ -8,4 +8,4 @@ Supports:
 
 ## Running unit tests
 
-Run `ng test ngag-logger` to execute the unit tests.
+Run `ng test ngag-jwt` to execute the unit tests.
