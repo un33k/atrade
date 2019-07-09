@@ -14,10 +14,10 @@ import { LoggerCfg } from './logger.models';
 export class LoggerService extends BaseLogger {
   private initializedOptions: LoggerCfg = DefaultLogCfg;
 
-  constructor(public cfgService: CfgService, @Inject(PLATFORM_ID) public platformId) {
+  constructor(public cfg: CfgService, @Inject(PLATFORM_ID) public platformId) {
     super();
 
-    this.initializedOptions = ldNestedMerge(DefaultLogCfg, cfgService.options.logger);
+    this.initializedOptions = ldNestedMerge(DefaultLogCfg, cfg.options.logger);
     this.appLogLevel = this.initializedOptions.level;
 
     if (isPlatformBrowser(platformId)) {
@@ -27,7 +27,7 @@ export class LoggerService extends BaseLogger {
         navigator.userAgent.indexOf('MSIE') !== -1
       );
     }
-    if (!this.cfgService.options.production) {
+    if (!this.cfg.options.production) {
       this.debug(`LogService ready ... (${platformId})`);
     }
   }

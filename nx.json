@@ -34,6 +34,9 @@
     },
     "ngag-jwt": {
       "tags": []
+    },
+    "ngag-i18n": {
+      "tags": []
     }
   }
 }

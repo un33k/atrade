@@ -32,7 +32,7 @@ describe('LoggerService - Default Cfg', () => {
   });
 
   it('should be have the app config options', () => {
-    expect(service.cfgService.options.appName).toBe(AppEnv.appName);
+    expect(service.cfg.options.appName).toBe(AppEnv.appName);
   });
 
   it('should be have the module default config options', () => {
@@ -53,6 +53,6 @@ describe('LoggerService - LoggerCfg', () => {
   });
 
   it('should have local config match app-level config', () => {
-    expect(service.options.level).toBe(service.cfgService.options.logger.level);
+    expect(service.options.level).toBe(service.cfg.options.logger.level);
   });
 });

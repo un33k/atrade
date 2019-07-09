@@ -8,6 +8,7 @@
 
 import { Injectable } from '@angular/core';
 
+import { merge as ldNestedMerge } from 'lodash';
 import { Base64 } from 'js-base64';
 import { CfgService } from '@ngagx/cfg';
 import { LoggerService } from '@ngagx/logger';
@@ -26,10 +27,10 @@ export class JwtService {
    * Class constructor
    * @param options an optional configuration object
    */
-  constructor(private cfgService: CfgService, private logService: LoggerService) {
-    this.initializedOptions = { ...DefaultJwtCfg, ...cfgService.options.jwt };
-    if (!this.cfgService.options.production) {
-      console.log(`JwtService ready ...`);
+  constructor(private cfg: CfgService, private log: LoggerService) {
+    this.initializedOptions = ldNestedMerge(DefaultJwtCfg, cfg.options.jwt);
+    if (!this.cfg.options.production) {
+      log.debug(`JwtService ready ...`);
     }
   }
 
@@ -41,14 +42,14 @@ export class JwtService {
   getPayload(token: string): any {
     const parts = token ? token.split('.') : [];
     if (parts.length !== 3) {
-      this.logService.error('JWT must have 3 parts');
+      this.log.error('JWT must have 3 parts');
     } else {
       try {
         const decoded = Base64.decode(parts[1]);
         const payload = JSON.parse(decoded);
         return payload;
       } catch (e) {
-        this.logService.error('Cannot decode the token');
+        this.log.error('Cannot decode the token');
       }
     }
     return null;
