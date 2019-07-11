@@ -1,5 +1,5 @@
 /**
- * Returns true of argument is an object
+ * Returns true if argument is an object
  * @param arg argument of type any
  */
 export const isObject = (arg: any): boolean => {
@@ -7,7 +7,7 @@ export const isObject = (arg: any): boolean => {
 };
 
 /**
- * Returns true of argument is a string
+ * Returns true if argument is a string
  * @param arg argument of type any
  */
 export const isString = (arg: any): boolean => {
@@ -15,9 +15,17 @@ export const isString = (arg: any): boolean => {
 };
 
 /**
- * Returns true of argument is defined
+ * Returns true if argument is defined
  * @param arg argument of type any
  */
 export const isDefined = (arg: any): boolean => {
   return typeof arg !== 'undefined';
+};
+
+/**
+ * Returns true if argument is a function
+ * @param arg argument of type any
+ */
+export const isFunction = (arg: any): boolean => {
+  return typeof arg === 'function' || false;
 };

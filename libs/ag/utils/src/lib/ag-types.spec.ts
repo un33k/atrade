@@ -1,4 +1,5 @@
 import { isString, isObject, isDefined } from './ag-types';
+import { isFunction } from 'util';
 
 describe('Agnostic Utils - Types', function() {
   it('should return true when isString arg is a string', function() {
@@ -35,5 +36,15 @@ describe('Agnostic Utils - Types', function() {
     definable = 'now-defined';
     value = isDefined(definable);
     expect(value).toBe(true);
+  });
+
+  it('should return true when arg is a function', function() {
+    const value = isFunction(() => {});
+    expect(value).toBe(true);
+  });
+
+  it('should return false when arg is not a function', function() {
+    const value = isFunction('foobar');
+    expect(value).toBe(false);
   });
 });
