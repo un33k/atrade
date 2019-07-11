@@ -37,6 +37,9 @@
     },
     "ngag-i18n": {
       "tags": []
+    },
+    "ngag-unsub": {
+      "tags": []
     }
   }
 }

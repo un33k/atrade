@@ -1,0 +1,81 @@
+import { TestBed } from '@angular/core/testing';
+
+import { Subscription } from 'rxjs';
+
+import { UnsubService } from './unsub.service';
+
+const mockSub1 = {
+  unsubscribe: () => {
+    console.log('Sub1 cancelled');
+  }
+};
+
+const mockSub2 = {
+  unsubscribe: () => {
+    console.log('Sub2 cancelled');
+  }
+};
+
+// disable console log during test
+// jest.spyOn(console, 'log').mockImplementation(() => undefined);
+
+describe('UnsubService', () => {
+  let service: UnsubService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [],
+      providers: [UnsubService]
+    });
+
+    service = TestBed.get(UnsubService);
+  });
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+
+  it('should have required props and methods', () => {
+    expect(service.destroy$).toBeDefined();
+    expect(service.subscriptions).toBeDefined();
+    expect(service.autoUnsubscribe).toBeDefined();
+    expect(service.ngOnDestroy).toBeDefined();
+  });
+
+  it('autoUnsubscribe() should accept subscriptions objects', () => {
+    const sub1$ = mockSub1 as Subscription;
+    service.autoUnsubscribe(sub1$);
+    expect(service.subscriptions.length).toBe(1);
+  });
+
+  it('autoUnsubscribe() should accept a list of subscriptions', () => {
+    const sub1$ = mockSub1 as Subscription;
+    const sub2$ = mockSub2 as Subscription;
+    service.autoUnsubscribe([sub1$, sub2$]);
+    expect(service.subscriptions.length).toBe(2);
+  });
+
+  it('ngOnDestroy() should complete destroy$', () => {
+    const completeSpy = spyOn(service.destroy$, 'complete');
+    service.ngOnDestroy();
+    expect(completeSpy).toHaveBeenCalled();
+  });
+
+  it('ngOnDestroy() should have cancelled subscriptions', () => {
+    const sub1$ = mockSub1 as Subscription;
+    service.autoUnsubscribe(sub1$);
+    const sub2$ = mockSub1 as Subscription;
+    service.autoUnsubscribe(sub2$);
+    const logSpy = spyOn(console, 'log');
+    service.ngOnDestroy();
+    expect(logSpy).toHaveBeenCalled();
+  });
+
+  it('ngOnDestroy() should handle invalid subscriptions', () => {
+    const sub1$ = {} as Subscription;
+    service.autoUnsubscribe([sub1$]);
+    const logSpy = spyOn(console, 'log');
+    service.ngOnDestroy();
+    expect(logSpy).not.toHaveBeenCalled();
+  });
+});
