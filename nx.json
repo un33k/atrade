@@ -8,16 +8,34 @@
     "nx.json": "*"
   },
   "projects": {
-    "avidtrader-e2e": {
+    "wb-avidtrader-e2e": {
       "tags": []
     },
-    "avidtrader": {
+    "wb-avidtrader": {
       "tags": []
     },
     "api": {
       "tags": []
     },
     "api-interface": {
+      "tags": []
+    },
+    "ngag-cfg": {
+      "tags": []
+    },
+    "ag-utils": {
+      "tags": []
+    },
+    "ag-base": {
+      "tags": []
+    },
+    "ngag-logger": {
+      "tags": []
+    },
+    "ngag-jwt": {
+      "tags": []
+    },
+    "ngag-i18n": {
       "tags": []
     }
   }

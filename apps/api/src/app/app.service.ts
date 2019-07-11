@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Message } from '@avidtrader/api-interface';
+import { Message } from '@ngpx/api-interface';
 
 @Injectable()
 export class AppService {

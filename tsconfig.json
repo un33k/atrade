@@ -16,7 +16,13 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@avidtrader/api-interface": ["libs/api-interface/src/index.ts"]
+      "@ngpx/api-interface": ["libs/api-interface/src/index.ts"],
+      "@agx/utils": ["libs/ag/utils/src/index.ts"],
+      "@agx/base": ["libs/ag/base/src/index.ts"],
+      "@ngagx/cfg": ["libs/ng/ag/cfg/src/index.ts"],
+      "@ngagx/logger": ["libs/ng/ag/logger/src/index.ts"],
+      "@ngagx/jwt": ["libs/ng/ag/jwt/src/index.ts"],
+      "@ngagx/i18n": ["libs/ng/ag/i18n/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
