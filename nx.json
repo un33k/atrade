@@ -40,6 +40,9 @@
     },
     "ngag-unsub": {
       "tags": []
+    },
+    "ngag-menu": {
+      "tags": []
     }
   }
 }

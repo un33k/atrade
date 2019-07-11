@@ -387,6 +387,37 @@
         }
       },
       "schematics": {}
+    },
+    "ngag-menu": {
+      "projectType": "library",
+      "root": "libs/ng/ag/menu",
+      "sourceRoot": "libs/ng/ag/menu/src",
+      "prefix": "avidtrader",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/ng/ag/menu/tsconfig.lib.json",
+            "project": "libs/ng/ag/menu/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/ng/ag/menu/tsconfig.lib.json", "libs/ng/ag/menu/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/ng/ag/menu/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ng/ag/menu/jest.config.js",
+            "tsConfig": "libs/ng/ag/menu/tsconfig.spec.json",
+            "setupFile": "libs/ng/ag/menu/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
     }
   },
   "cli": {

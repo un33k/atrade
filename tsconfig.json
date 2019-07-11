@@ -23,7 +23,8 @@
       "@ngagx/logger": ["libs/ng/ag/logger/src/index.ts"],
       "@ngagx/jwt": ["libs/ng/ag/jwt/src/index.ts"],
       "@ngagx/i18n": ["libs/ng/ag/i18n/src/index.ts"],
-      "@ngagx/unsub": ["libs/ng/ag/unsub/src/index.ts"]
+      "@ngagx/unsub": ["libs/ng/ag/unsub/src/index.ts"],
+      "@ngagx/menu": ["libs/ng/ag/menu/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
