@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Message } from '@ngpx/api-interface';
+import { Message } from '@ngx/api-interface';
 import { CfgService, AppCfg, DefaultAppCfg } from '@ngagx/cfg';
 import { LoggerService } from '@ngagx/logger';
 
