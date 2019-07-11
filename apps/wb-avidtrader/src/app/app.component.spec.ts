@@ -4,6 +4,9 @@ import { CfgModule } from '@ngagx/cfg';
 
 import { AppComponent } from './app.component';
 
+// disable console log during test
+jest.spyOn(console, 'log').mockImplementation(() => undefined);
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
