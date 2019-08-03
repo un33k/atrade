@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, BeforeInsert,
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 
-import { tryGet } from '@agx/base';
+import { tryGet } from '@agx/utils';
 import { UserResponseDTO } from '@agx/dto';
 
 import { USER_JWT_EXPIRY } from './user.constants';
