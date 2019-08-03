@@ -418,6 +418,28 @@
         }
       },
       "schematics": {}
+    },
+    "ag-dto": {
+      "root": "libs/ag/dto",
+      "sourceRoot": "libs/ag/dto/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/ag/dto/tsconfig.lib.json", "libs/ag/dto/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/ag/dto/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ag/dto/jest.config.js",
+            "tsConfig": "libs/ag/dto/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "cli": {

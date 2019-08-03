@@ -43,6 +43,9 @@
     },
     "ngag-menu": {
       "tags": []
+    },
+    "ag-dto": {
+      "tags": []
     }
   }
 }
