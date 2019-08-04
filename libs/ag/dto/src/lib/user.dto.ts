@@ -1,7 +1,7 @@
 import { IsNotEmpty } from 'class-validator';
 
 /**
- * Login request object shape
+ * Login request object
  */
 export class UserLoginDTO {
   @IsNotEmpty()
@@ -12,7 +12,7 @@ export class UserLoginDTO {
 }
 
 /**
- * Register request object shape
+ * Register request object
  */
 export class UserRegisterDTO {
   @IsNotEmpty()
@@ -29,7 +29,7 @@ export class UserRegisterDTO {
 }
 
 /**
- * User profile request response shape
+ * User profile request response
  */
 export class UserResponseDTO {
   id: string;

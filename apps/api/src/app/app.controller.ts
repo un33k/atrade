@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 
-import { Message } from '@agx/api-interface';
+import { Message } from '@agx/dto';
 
 import { AppService } from './app.service';
 

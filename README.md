@@ -21,6 +21,7 @@
 - EL = Electron (electronjs.org)
 - NS = NativeScript (nativescript.org)
 - AI = Apple's iOS (apple.com/ios)
+- AN = Google's Andriod (android.com)
 - IO = Ionic (ionicframework.com)
 
 ### Applications

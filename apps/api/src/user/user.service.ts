@@ -10,7 +10,7 @@ import { USER_PER_PAGE } from './user.constants';
 export class UserService {
   constructor(
     @InjectRepository(UserEntity)
-    private userRepository: Repository<UserEntity>
+    private readonly userRepository: Repository<UserEntity>
   ) {}
 
   async showAll(page = 1) {
