@@ -20,16 +20,16 @@
 - WB = Web (Chrome, Firefox, Safari, Edge, etc)
 - EL = Electron (electronjs.org)
 - NS = NativeScript (nativescript.org)
-- AI = Apple's iOS (apple.com/ios)
+- IO = Apple's iOS (apple.com/ios)
 - AN = Google's Andriod (android.com)
-- IO = Ionic (ionicframework.com)
+- IC = Ionic (ionicframework.com)
 
 ### Applications
 
 - wb.appname = Web (Chrome, Firefox, Safari, Edge, etc)
 - el.appname = Desktop (Electorn Application - Linux, MacOS, Windows)
 - ns.appname = NativeScript (Andriod, iOS)
-- io.appname = Ionic (Andriod, iOS)
+- ic.appname = Ionic (Andriod, iOS)
 
 
 # Avidtrader - Instruction
