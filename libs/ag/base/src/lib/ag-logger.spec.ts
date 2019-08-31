@@ -14,7 +14,7 @@ describe('Agnostic Base - BaseLogger', function() {
   });
 
   it('should not detect IE', () => {
-    expect(logger.platformIsIE).toBe(false);
+    expect(logger.isColorLog).toBe(true);
   });
 
   it('should not log anything at log level of none (default)', () => {

@@ -22,7 +22,7 @@ export const LogColors = ['red', 'OrangeRed ', 'orange', 'teal', 'SlateGrey'];
  * An base class that handles logging service
  */
 export abstract class BaseLogger {
-  protected platformIsIE = false;
+  protected isColorLog = true;
 
   constructor(protected appLogLevel: LogLevel = LogLevel.none) {}
 
@@ -87,11 +87,11 @@ export abstract class BaseLogger {
   private log(level: LogLevel, message: any, extras: any[] = []) {
     const logOff = !message || [level, this.appLogLevel].includes(LogLevel.none);
     if (!logOff) {
-      if (this.platformIsIE) {
-        console.log(`%c${this.time} [${LogNames[level]}]`, message, ...extras);
-      } else {
+      if (this.isColorLog) {
         const color = LogColors[level];
         console.log(`%c${this.time} [${LogNames[level]}]`, `color:${color}`, message, ...extras);
+      } else {
+        console.log(`%c${this.time} [${LogNames[level]}]`, message, ...extras);
       }
     }
   }

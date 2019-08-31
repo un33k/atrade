@@ -21,7 +21,7 @@ export class LoggerService extends BaseLogger {
     this.appLogLevel = this.initializedOptions.level;
 
     if (isPlatformBrowser(platformId)) {
-      this.platformIsIE = !!(
+      this.isColorLog = !!!(
         navigator.userAgent.match(/Edge\//) ||
         navigator.userAgent.match(/Trident\//) ||
         navigator.userAgent.indexOf('MSIE') !== -1
