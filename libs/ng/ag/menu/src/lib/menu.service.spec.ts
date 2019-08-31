@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MenuItem } from './menu.models';
+import { MenuItem } from './menu.types';
 import { MenuModule } from './menu.module';
 import { MenuService } from './menu.service';
 

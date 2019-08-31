@@ -2,7 +2,7 @@ import { NgModule, Optional, SkipSelf, ModuleWithProviders, APP_INITIALIZER } fr
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AppCfg } from './cfg.models';
+import { AppCfg } from './cfg.types';
 import { CFG_OPTIONS } from './cfg.defaults';
 import { CfgService } from './cfg.service';
 

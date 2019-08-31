@@ -1,4 +1,4 @@
-import { JwtCfg } from './jwt.models';
+import { JwtCfg } from './jwt.types';
 
 /** Default configuration - JWT module */
 export const DefaultJwtCfg: JwtCfg = {

@@ -1,5 +1,3 @@
-import { MenuNode } from './menu.utils';
-
 /**
  * Default Menu Tree (placeholder)
  */

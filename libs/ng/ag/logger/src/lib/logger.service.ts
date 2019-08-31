@@ -6,7 +6,7 @@ import { BaseLogger } from '@agx/base';
 import { CfgService } from '@ngagx/cfg';
 
 import { DefaultLogCfg } from './logger.defaults';
-import { LoggerCfg } from './logger.models';
+import { LoggerCfg } from './logger.types';
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,6 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 
-import { MenuItem, PermissionVerificationFuncType } from './menu.models';
+import { MenuItem, PermissionVerificationFuncType } from './menu.types';
 import { MenuNode } from './menu.utils';
 import { MenuModule } from './menu.module';
 

@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { CfgService } from '@ngagx/cfg';
 import { LoggerService } from '@ngagx/logger';
 
-import { I18nCfg, LanguageDirection } from './i18n.models';
+import { I18nCfg, LanguageDirection } from './i18n.types';
 import { RtlLanguages, DefaultI18nCfg, DefaultLanguage } from './i18n.defaults';
 import { registerActiveLocales } from './i18n.locales';
 

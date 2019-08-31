@@ -6,7 +6,7 @@ import { tryGet } from '@agx/utils';
 import { UserResponseDTO } from '@agx/dto';
 
 import { USER_JWT_EXPIRY } from './user.constants';
-import { UserResponseOptions } from './user.model';
+import { UserResponseOptions } from './user.types';
 
 @Entity('user')
 export class UserEntity {
@@ -37,7 +37,7 @@ export class UserEntity {
   @Column()
   lastName: string;
 
-  @Column('text')
+  @Column()
   password: string;
 
   @BeforeInsert()

@@ -1,4 +1,4 @@
-import { UnsubscribableOptions } from './unsub.models';
+import { UnsubscribableOptions } from './unsub.types';
 
 export const DefaultUnsubscribableOptions: UnsubscribableOptions = {
   takeUntilInputName: null,

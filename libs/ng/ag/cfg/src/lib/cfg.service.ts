@@ -5,7 +5,7 @@ import { merge as ldNestedMerge } from 'lodash';
 import { of as observableOf } from 'rxjs';
 import { timeout, catchError } from 'rxjs/operators';
 
-import { AppCfg, HttpMethod } from './cfg.models';
+import { AppCfg, HttpMethod } from './cfg.types';
 import { CFG_OPTIONS, DefaultAppCfg, DEFAULT_HTTP_TIMEOUT } from './cfg.defaults';
 
 @Injectable({

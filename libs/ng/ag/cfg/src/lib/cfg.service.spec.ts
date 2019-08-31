@@ -2,7 +2,7 @@ import { TestBed, inject, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { CfgService } from './cfg.service';
-import { AppCfg, HttpMethod } from './cfg.models';
+import { AppCfg, HttpMethod } from './cfg.types';
 import { CFG_OPTIONS, DEFAULT_HTTP_TIMEOUT } from './cfg.defaults';
 import { CfgModule } from './cfg.module';
 

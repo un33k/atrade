@@ -1,6 +1,6 @@
 import { registerLocaleData } from '@angular/common';
 
-import { LanguageInfo } from './i18n.models';
+import { LanguageInfo } from './i18n.types';
 
 /**
  * Registers the active locales with Angular

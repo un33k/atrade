@@ -1,4 +1,4 @@
-import { MenuItem } from './menu.models';
+import { MenuItem } from './menu.types';
 
 export class MenuNode implements MenuItem {
   name: string = null;

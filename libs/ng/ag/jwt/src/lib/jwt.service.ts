@@ -13,7 +13,7 @@ import { Base64 } from 'js-base64';
 import { CfgService } from '@ngagx/cfg';
 import { LoggerService } from '@ngagx/logger';
 
-import { JwtCfg } from './jwt.models';
+import { JwtCfg } from './jwt.types';
 import { DefaultJwtCfg } from './jwt.defaults';
 
 /**  An injectable class that handles JWT service */
