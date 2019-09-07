@@ -3,8 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { SuperUser } from '../user/user.types';
+import { UserRegisterDTO } from '@agx/dto';
 
-const isProduction = false;
+const production = false;
+
 const ormConfig: TypeOrmModuleOptions = {
   type: 'postgres',
   host: 'localhost',
@@ -12,12 +15,21 @@ const ormConfig: TypeOrmModuleOptions = {
   username: 'atrader',
   password: 'pass4atrader',
   database: 'atrader',
-  synchronize: isProduction || true,
+  synchronize: false,
   logging: true,
-  entities: ['apps/api/src/**/*.entity{.ts,.js}']
+  entities: [production ? `${__dirname}../../../../dist/**/*.entity.js` : `${__dirname}/../**/*.entity.ts`]
+};
+
+const adminInfo: UserRegisterDTO = {
+  username: 'admino',
+  firstName: 'Val',
+  lastName: 'Neekman',
+  email: 'val@neekman.com',
+  password: 'hello'
 };
 
 export const environment = {
-  production: isProduction,
-  ormConfig: ormConfig
+  production,
+  ormConfig,
+  adminInfo
 };

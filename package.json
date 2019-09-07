@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "api:run": "ts-node -r tsconfig-paths/register apps/api/src/main.ts",
+    "api:run": "./node_modules/.bin/ts-node -P ./apps/api/tsconfig.app.json -r tsconfig-paths/register apps/api/src/main.ts",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",

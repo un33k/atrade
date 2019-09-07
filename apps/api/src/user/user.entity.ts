@@ -84,7 +84,7 @@ export class UserEntity {
       {
         sub: this.id
       },
-      process.env.SECRET,
+      process.env.SECRET || 'verySeekret',
       { expiresIn: `${USER_JWT_EXPIRY}d` }
     );
   }
