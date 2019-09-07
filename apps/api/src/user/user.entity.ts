@@ -1,8 +1,16 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, BeforeInsert, UpdateDateColumn } from 'typeorm';
+import { tryGet } from '@agx/utils';
+import {
+  // typeorm
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  BeforeInsert,
+  UpdateDateColumn
+} from 'typeorm';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 
-import { tryGet } from '@agx/utils';
 import { UserResponseDTO } from '@agx/dto';
 
 import { USER_JWT_EXPIRY } from './user.constants';
