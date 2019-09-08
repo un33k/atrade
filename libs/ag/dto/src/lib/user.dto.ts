@@ -12,20 +12,25 @@ export class UserLoginDTO {
 }
 
 /**
- * Register request object
+ * Create request object
  */
-export class UserRegisterDTO {
+export class UserCreateDTO {
   @IsNotEmpty()
   username: string;
 
   @IsNotEmpty()
   email: string;
 
-  @IsNotEmpty()
-  password: string;
-
   firstName?: string;
   lastName?: string;
+}
+
+/**
+ * Register request object
+ */
+export class UserRegisterDTO extends UserCreateDTO {
+  @IsNotEmpty()
+  password: string;
 }
 
 /**

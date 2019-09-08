@@ -6,7 +6,8 @@ import {
   Column,
   CreateDateColumn,
   BeforeInsert,
-  UpdateDateColumn
+  UpdateDateColumn,
+  BeforeUpdate
 } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
@@ -49,8 +50,23 @@ export class UserEntity {
   password: string;
 
   @BeforeInsert()
-  async hashPassword() {
-    this.password = await bcrypt.hash(this.password, 10);
+  async setPassword() {
+    this.password = await bcrypt.hash(this.password || this.makeRandomPassword(), 10);
+  }
+
+  @BeforeUpdate()
+  async setNewPassword() {
+    if (this.password) {
+      this.password = await bcrypt.hash(this.password, 10);
+    }
+  }
+
+  @BeforeUpdate()
+  async prune() {
+    if (this.updatedAt) {
+      delete this.updatedAt;
+    }
+    console.log(this)
   }
 
   async comparePassword(attempt: string): Promise<boolean> {
@@ -87,5 +103,9 @@ export class UserEntity {
       process.env.SECRET || 'verySeekret',
       { expiresIn: `${USER_JWT_EXPIRY}d` }
     );
+  }
+
+  private makeRandomPassword(): string {
+    return new Date().getMilliseconds.toString();
   }
 }
