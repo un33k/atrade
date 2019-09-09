@@ -36,7 +36,7 @@ export class UserEntity {
   password: string;
 
   /**
-   * Before the initial insert, we need to has the password
+   * Before the initial insert, we need to have a password
    */
   @BeforeInsert()
   async setPassword() {
@@ -44,16 +44,19 @@ export class UserEntity {
   }
 
   /**
-   * Hydrates user record with given partial data
-   * @param data partial user data
+   * Sets user's password to the given string (salted + bcrypted)
+   * @param password password string
    */
-  toModel(data: Partial<UserCreateDTO | UserRegisterDTO>) {
-    for (const key of Object.keys(data)) {
-      if (this.hasOwnProperty(key)) {
-        this[key] = data[key];
-      }
-    }
-    return this;
+  async setNewPassword(password: string) {
+    this.password = await this.bcryptPassword(password);
+  }
+
+  /**
+   * Returns true if attempted password is the same as the saved password
+   * @param attempt password attempt
+   */
+  async comparePassword(attempt: string): Promise<boolean> {
+    return await bcrypt.compare(this.password, this.saltPassword(attempt));
   }
 
   /**
@@ -84,6 +87,19 @@ export class UserEntity {
   }
 
   /**
+   * Hydrates user record with given partial data
+   * @param data partial user data
+   */
+  toModel(data: Partial<UserCreateDTO | UserRegisterDTO>) {
+    for (const key of Object.keys(data)) {
+      if (this.hasOwnProperty(key)) {
+        this[key] = data[key];
+      }
+    }
+    return this;
+  }
+
+  /**
    * Returns an encrypted JWT token for user for session
    */
   private get token(): string {
@@ -94,22 +110,6 @@ export class UserEntity {
       environment.seekret,
       { expiresIn: `${USER_JWT_EXPIRY}d` }
     );
-  }
-
-  /**
-   * Sets user's password to the given string (salted + bcrypted)
-   * @param password password string
-   */
-  async setNewPassword(password: string) {
-    this.password = await this.bcryptPassword(password);
-  }
-
-  /**
-   * Returns true if attempted password is the same as the saved password
-   * @param attempt password attempt
-   */
-  async comparePassword(attempt: string): Promise<boolean> {
-    return await bcrypt.compare(this.password, this.saltPassword(attempt));
   }
 
   /**
@@ -127,7 +127,7 @@ export class UserEntity {
    * @warn changing the `salt` will invalidate all password
    * @warn to prevent null-password attacks, no user shall be created with a null-password
    */
-  async bcryptPassword(password: string) {
+  private async bcryptPassword(password: string) {
     password = password || Math.random().toString();
     return await bcrypt.hash(this.saltPassword(password), 10);
   }
