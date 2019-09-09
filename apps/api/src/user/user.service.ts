@@ -32,7 +32,7 @@ export class UserService {
 
   async update(id: string, data: Partial<UserCreateDTO>) {
     await this.userRepository.update({ id }, data);
-    const user = await this.userRepository.findOne({ id });
+    const user = await this.userRepository.findOne({ where: { id } });
     return tryGet(() => user.toResponseDTO());
   }
 

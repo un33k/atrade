@@ -3,10 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { SuperUser } from '../user/user.types';
 import { UserRegisterDTO } from '@agx/dto';
 
+/** Whether this is a production server */
 const production = false;
+
+/**
+ * Site-wide top seekret phrase.
+ * @note changing this will make all password invalid
+ * */
+const seekret = 'hajsfASDFAFDIH:HH&Y*YE*REIHFJ:NJNDF:HDHF:DF';
 
 const ormConfig: TypeOrmModuleOptions = {
   type: 'postgres',
@@ -29,6 +35,7 @@ const adminInfo: UserRegisterDTO = {
 };
 
 export const environment = {
+  seekret,
   production,
   ormConfig,
   adminInfo
