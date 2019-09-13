@@ -11,7 +11,7 @@ import { UserResponseOptions } from './user.types';
 
 @Entity('user')
 export class UserEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id: string;
 
   @CreateDateColumn({ type: 'timestamptz', readonly: true })

@@ -1,8 +1,8 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { UserLoginDTO, UserRegisterDTO, StatusDTO, UserCreateDTO } from '@agx/dto';
+import { UserLoginDTO, UserRegisterDTO, StatusDTO, UserCreateDTO, UserResponseDTO } from '@agx/dto';
 import { UserEntity } from './user.entity';
 import { USER_PER_PAGE } from './user.constants';
 import { environment } from '../environments/environment';
@@ -27,18 +27,29 @@ export class UserService {
 
   async read(id: string) {
     const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) {
+      throw new HttpException('Unknown user', HttpStatus.NOT_FOUND);
+    }
     return tryGet(() => user.toResponseDTO());
   }
 
-  async update(id: string, data: Partial<UserCreateDTO>) {
+  async update(id: string, data: Partial<UserCreateDTO>): Promise<UserResponseDTO> {
+    let user = await this.userRepository.findOne({ where: { id } });
+    if (!user) {
+      throw new HttpException('Unknown user', HttpStatus.NOT_FOUND);
+    }
     await this.userRepository.update({ id }, data);
-    const user = await this.userRepository.findOne({ where: { id } });
+    user = await this.userRepository.findOne({ where: { id } });
     return tryGet(() => user.toResponseDTO());
   }
 
   async delete(id: string) {
+    const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) {
+      throw new HttpException('Unknown user', HttpStatus.NOT_FOUND);
+    }
     await this.userRepository.delete({ id });
-    return { operation: 'delete', success: true, message: `User deleted (${id})` } as StatusDTO;
+    return { statusCode: 200, message: `User deleted (${id})` };
   }
 
   async login(data: UserLoginDTO) {
@@ -54,7 +65,7 @@ export class UserService {
     const { username } = data;
     let user = await this.userRepository.findOne({ where: { username } });
     if (user) {
-      throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
+      throw new HttpException('User exists', HttpStatus.BAD_REQUEST);
     }
     user = await this.userRepository.create(data);
     await this.userRepository.save(user);

@@ -1,19 +1,14 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { getMetadataArgsStorage } from 'typeorm';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from '../user/user.module';
-import { environment } from '../environments/environment';
+import { DatabaseModule } from '../database/database.module';
 
 @Module({
   imports: [
     // app level imports
-    TypeOrmModule.forRoot({
-      ...environment.ormConfig,
-      entities: getMetadataArgsStorage().tables.map(tbl => tbl.target)
-    }),
+    DatabaseModule,
     UserModule
   ],
   controllers: [
