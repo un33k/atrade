@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsEmpty } from 'class-validator';
 
 /**
  * Login request object
@@ -31,6 +31,31 @@ export class UserCreateDTO {
 export class UserRegisterDTO extends UserCreateDTO {
   @IsNotEmpty()
   password: string;
+}
+
+/**
+ * Update request object
+ */
+export class UserUpdateDTO {
+  @IsEmpty()
+  username: string;
+
+  @IsEmpty()
+  email: string;
+
+  firstName?: string;
+  lastName?: string;
+}
+
+/**
+ * Update Email request object
+ */
+export class UserUpdateEmailDTO {
+  @IsEmpty()
+  username: string;
+
+  @IsNotEmpty()
+  email: string;
 }
 
 /**

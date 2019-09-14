@@ -1,5 +1,5 @@
 import { tryGet } from '@agx/utils';
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, BeforeInsert, UpdateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, BeforeInsert, UpdateDateColumn, AfterUpdate } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 
@@ -56,7 +56,7 @@ export class UserEntity {
    * @param attempt password attempt
    */
   async comparePassword(attempt: string): Promise<boolean> {
-    return await bcrypt.compare(this.password, this.saltPassword(attempt));
+    return await bcrypt.compare(this.password, attempt);
   }
 
   /**
@@ -113,22 +113,12 @@ export class UserEntity {
   }
 
   /**
-   * Returns a salted password
-   * @param password string
-   * @warn changing the `salt` will invalidate all password
-   */
-  private saltPassword(password: string) {
-    return `${password}:${environment.seekret}`;
-  }
-
-  /**
    * Returns a salted-bcrypted password
    * @param password string
-   * @warn changing the `salt` will invalidate all password
-   * @warn to prevent null-password attacks, no user shall be created with a null-password
+   * @note to prevent null-password attacks, no user shall be created with a null-password
    */
   private async bcryptPassword(password: string) {
     password = password || Math.random().toString();
-    return await bcrypt.hash(this.saltPassword(password), 10);
+    return await bcrypt.hash(password, 10);
   }
 }
