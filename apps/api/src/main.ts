@@ -6,14 +6,17 @@
 import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const globalPrefix = 'api';
-  app.setGlobalPrefix(globalPrefix);
-  const port = process.env.port || 3333;
-  await app.listen(port, () => {
-    console.log('Listening at http://localhost:' + port + '/' + globalPrefix);
+
+  app.setGlobalPrefix(environment.domainInfo.apiPrefex);
+
+  await app.listen(environment.domainInfo.port, () => {
+    if (!environment.production) {
+      console.log(`Listening at http://localhost:${environment.domainInfo.port}/${environment.domainInfo.apiPrefex}`);
+    }
   });
 }
 

@@ -31,12 +31,18 @@ const adminInfo: UserRegisterDTO = {
   firstName: 'Val',
   lastName: 'Neekman',
   email: 'val@neekman.com',
-  password: 'hello'
+  password: production ? 'pass4admino' : 'hello'
+};
+
+const domainInfo = {
+  port: 3333,
+  apiPrefex: 'api'
 };
 
 export const environment = {
   seekret,
   production,
+  domainInfo,
   ormConfig,
   adminInfo
 };

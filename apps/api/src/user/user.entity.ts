@@ -1,5 +1,12 @@
 import { tryGet } from '@agx/utils';
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, BeforeInsert, UpdateDateColumn, AfterUpdate } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  BeforeInsert,
+  UpdateDateColumn,
+} from 'typeorm';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 
@@ -56,7 +63,7 @@ export class UserEntity {
    * @param attempt password attempt
    */
   async comparePassword(attempt: string): Promise<boolean> {
-    return await bcrypt.compare(this.password, attempt);
+    return await bcrypt.compare(attempt, this.password);
   }
 
   /**

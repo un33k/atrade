@@ -4,8 +4,9 @@ import { IsNotEmpty, IsEmpty } from 'class-validator';
  * Login request object
  */
 export class UserLoginDTO {
-  @IsNotEmpty()
   username: string;
+
+  email: string;
 
   @IsNotEmpty()
   password: string;

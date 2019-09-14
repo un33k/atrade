@@ -6,16 +6,11 @@ import { UserLoginDTO, UserRegisterDTO, StatusDTO, UserCreateDTO, UserResponseDT
 import { UserEntity } from './user.entity';
 import { USER_PER_PAGE } from './user.constants';
 import { environment } from '../environments/environment';
-import { tryGet } from '@agx/utils';
+import { tryGet, Validator } from '@agx/utils';
 
 @Injectable()
 export class UserService {
-  constructor(
-    @InjectRepository(UserEntity)
-    private readonly userRepository: Repository<UserEntity>
-  ) {
-    this.createAdmin();
-  }
+  constructor(@InjectRepository(UserEntity) readonly userRepository: Repository<UserEntity>) {}
 
   async showAll(page = 1) {
     const users = await this.userRepository.find({
@@ -48,17 +43,8 @@ export class UserService {
     if (!user) {
       throw new HttpException('Unknown user', HttpStatus.NOT_FOUND);
     }
-    await this.userRepository.delete({ id });
+    await this.userRepository.remove(user);
     return { statusCode: 200, message: `User deleted (${id})` };
-  }
-
-  async login(data: UserLoginDTO) {
-    const { username, password } = data;
-    const user = await this.userRepository.findOne({ where: { username } });
-    if (!user || !(await user.comparePassword(password))) {
-      throw new HttpException('Invalid username/password', HttpStatus.BAD_REQUEST);
-    }
-    return tryGet(() => user.toResponseDTO({ includeToken: true, includeEmail: true }));
   }
 
   async create(data: UserCreateDTO) {
@@ -70,20 +56,5 @@ export class UserService {
     user = await this.userRepository.create(data);
     await this.userRepository.save(user);
     return tryGet(() => user.toResponseDTO({ includeToken: true, includeEmail: true }));
-  }
-
-  async register(data: UserRegisterDTO) {
-    return await this.create(data);
-  }
-
-  private createAdmin() {
-    this.userRepository
-      .findOne({ where: { username: environment.adminInfo.username } })
-      .then(admin => {
-        if (!admin) {
-          this.register(environment.adminInfo);
-        }
-      })
-      .catch(err => console.log(err));
   }
 }

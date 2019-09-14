@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Put, Delete, Body, Param, UsePipes } from '@nestjs/common';
 import { UserService } from './user.service';
-import { UserResponseDTO, UserCreateDTO, UserUpdateDTO } from '@agx/dto';
+import { UserResponseDTO, UserCreateDTO, UserUpdateDTO, UserRegisterDTO, UserLoginDTO } from '@agx/dto';
 import { ValidationPipe } from '@nt';
 
 @Controller('user')
@@ -9,7 +9,6 @@ export class UserController {
 
   @Get()
   showAll(): Promise<UserResponseDTO[]> {
-    console.log('get all users');
     return this.userService.showAll();
   }
 
