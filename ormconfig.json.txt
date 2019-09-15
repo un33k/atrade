@@ -1,0 +1,14 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "atrader",
+  "password": "pass4atrader",
+  "database": "atrader",
+  "logging": true,
+  "entities": ["apps/api/src/**/*.entity.ts", "dist/api/**/*.entity.js"],
+  "migrations": ["migration/*.ts"],
+  "cli": {
+    "migrationsDir": "migration"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "@agngx/i18n",
+  "description": "A simple translation module for Angular applications",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^8.0.0",
+    "@angular/core": "^8.0.0",
+    "@nwx/cfg": "^0.0.1",
+    "@nwx/logger": "^0.0.1",
+    "@ngx-translate/core": "^11.0.1",
+    "@ngx-translate/http-loader": "^4.0.0"
+  }
+}

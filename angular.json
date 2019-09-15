@@ -1,0 +1,440 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "wb-avidtrader": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/workspace:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/wb-avidtrader",
+      "sourceRoot": "apps/wb-avidtrader/src",
+      "prefix": "avidtrader",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/wb-avidtrader",
+            "index": "apps/wb-avidtrader/src/index.html",
+            "main": "apps/wb-avidtrader/src/main.ts",
+            "polyfills": "apps/wb-avidtrader/src/polyfills.ts",
+            "tsConfig": "apps/wb-avidtrader/tsconfig.app.json",
+            "assets": ["apps/wb-avidtrader/src/favicon.ico", "apps/wb-avidtrader/src/assets"],
+            "styles": ["apps/wb-avidtrader/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/wb-avidtrader/src/environments/environment.ts",
+                  "with": "apps/wb-avidtrader/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "wb-avidtrader:build",
+            "proxyConfig": "apps/wb-avidtrader/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "wb-avidtrader:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "wb-avidtrader:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/wb-avidtrader/tsconfig.app.json", "apps/wb-avidtrader/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!apps/wb-avidtrader/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/wb-avidtrader/jest.config.js",
+            "tsConfig": "apps/wb-avidtrader/tsconfig.spec.json",
+            "setupFile": "apps/wb-avidtrader/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "wb-avidtrader-e2e": {
+      "root": "apps/wb-avidtrader-e2e",
+      "sourceRoot": "apps/wb-avidtrader-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/wb-avidtrader-e2e/cypress.json",
+            "tsConfig": "apps/wb-avidtrader-e2e/tsconfig.e2e.json",
+            "devServerTarget": "wb-avidtrader:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "wb-avidtrader:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/wb-avidtrader-e2e/tsconfig.e2e.json",
+            "exclude": ["!apps/wb-avidtrader-e2e/**"]
+          }
+        }
+      }
+    },
+    "api": {
+      "root": "apps/api",
+      "sourceRoot": "apps/api/src",
+      "projectType": "application",
+      "prefix": "api",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/api",
+            "main": "apps/api/src/main.ts",
+            "tsConfig": "apps/api/tsconfig.app.json",
+            "assets": ["apps/api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/api/src/environments/environment.ts",
+                  "with": "apps/api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "api:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/api/tsconfig.app.json", "apps/api/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!apps/api/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/api/jest.config.js",
+            "tsConfig": "apps/api/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "ngag-cfg": {
+      "projectType": "library",
+      "root": "libs/ng/ag/cfg",
+      "sourceRoot": "libs/ng/ag/cfg/src",
+      "prefix": "avidtrader",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/ng/ag/cfg/tsconfig.lib.json",
+            "project": "libs/ng/ag/cfg/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/ng/ag/cfg/tsconfig.lib.json", "libs/ng/ag/cfg/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/ng/ag/cfg/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ng/ag/cfg/jest.config.js",
+            "tsConfig": "libs/ng/ag/cfg/tsconfig.spec.json",
+            "setupFile": "libs/ng/ag/cfg/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
+    },
+    "ag-utils": {
+      "root": "libs/ag/utils",
+      "sourceRoot": "libs/ag/utils/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/ag/utils/tsconfig.lib.json", "libs/ag/utils/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/ag/utils/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ag/utils/jest.config.js",
+            "tsConfig": "libs/ag/utils/tsconfig.spec.json",
+            "setupFile": "libs/ng/ag/cfg/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "ag-base": {
+      "root": "libs/ag/base",
+      "sourceRoot": "libs/ag/base/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/ag/base/tsconfig.lib.json", "libs/ag/base/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/ag/base/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ag/base/jest.config.js",
+            "tsConfig": "libs/ag/base/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "ngag-logger": {
+      "projectType": "library",
+      "root": "libs/ng/ag/logger",
+      "sourceRoot": "libs/ng/ag/logger/src",
+      "prefix": "avidtrader",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/ng/ag/logger/tsconfig.lib.json",
+            "project": "libs/ng/ag/logger/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/ng/ag/logger/tsconfig.lib.json", "libs/ng/ag/logger/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/ng/ag/logger/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ng/ag/logger/jest.config.js",
+            "tsConfig": "libs/ng/ag/logger/tsconfig.spec.json",
+            "setupFile": "libs/ng/ag/logger/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
+    },
+    "ngag-jwt": {
+      "projectType": "library",
+      "root": "libs/ng/ag/jwt",
+      "sourceRoot": "libs/ng/ag/jwt/src",
+      "prefix": "avidtrader",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/ng/ag/jwt/tsconfig.lib.json",
+            "project": "libs/ng/ag/jwt/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/ng/ag/jwt/tsconfig.lib.json", "libs/ng/ag/jwt/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/ng/ag/jwt/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ng/ag/jwt/jest.config.js",
+            "tsConfig": "libs/ng/ag/jwt/tsconfig.spec.json",
+            "setupFile": "libs/ng/ag/jwt/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
+    },
+    "ngag-i18n": {
+      "projectType": "library",
+      "root": "libs/ng/ag/i18n",
+      "sourceRoot": "libs/ng/ag/i18n/src",
+      "prefix": "avidtrader",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/ng/ag/i18n/tsconfig.lib.json",
+            "project": "libs/ng/ag/i18n/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/ng/ag/i18n/tsconfig.lib.json", "libs/ng/ag/i18n/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/ng/ag/i18n/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ng/ag/i18n/jest.config.js",
+            "tsConfig": "libs/ng/ag/i18n/tsconfig.spec.json",
+            "setupFile": "libs/ng/ag/i18n/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
+    },
+    "ngag-unsub": {
+      "projectType": "library",
+      "root": "libs/ng/ag/unsub",
+      "sourceRoot": "libs/ng/ag/unsub/src",
+      "prefix": "avidtrader",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/ng/ag/unsub/tsconfig.lib.json",
+            "project": "libs/ng/ag/unsub/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/ng/ag/unsub/tsconfig.lib.json", "libs/ng/ag/unsub/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/ng/ag/unsub/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ng/ag/unsub/jest.config.js",
+            "tsConfig": "libs/ng/ag/unsub/tsconfig.spec.json",
+            "setupFile": "libs/ng/ag/unsub/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
+    },
+    "ngag-menu": {
+      "projectType": "library",
+      "root": "libs/ng/ag/menu",
+      "sourceRoot": "libs/ng/ag/menu/src",
+      "prefix": "avidtrader",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/ng/ag/menu/tsconfig.lib.json",
+            "project": "libs/ng/ag/menu/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/ng/ag/menu/tsconfig.lib.json", "libs/ng/ag/menu/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/ng/ag/menu/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ng/ag/menu/jest.config.js",
+            "tsConfig": "libs/ng/ag/menu/tsconfig.spec.json",
+            "setupFile": "libs/ng/ag/menu/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
+    },
+    "ag-dto": {
+      "root": "libs/ag/dto",
+      "sourceRoot": "libs/ag/dto/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/ag/dto/tsconfig.lib.json", "libs/ag/dto/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/ag/dto/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ag/dto/jest.config.js",
+            "tsConfig": "libs/ag/dto/tsconfig.spec.json"
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "wb-avidtrader"
+}

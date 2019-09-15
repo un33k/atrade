@@ -1,0 +1,9 @@
+{
+  "$schema": "../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../../dist/libs/ng/ag/i18n",
+  "lib": {
+    "entryFile": "src/index.ts",
+    "flatModuleFile": "ngag-i18n",
+    "umdModuleIds": {}
+  }
+}

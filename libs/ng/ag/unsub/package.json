@@ -1,0 +1,10 @@
+{
+  "name": "@ngagx/unsub",
+  "description": "A simple subscription clean up library for Angular applications",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^8.0.0",
+    "@angular/core": "^8.0.0",
+    "rxjs": "^.4.0"
+  }
+}

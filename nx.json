@@ -1,0 +1,48 @@
+{
+  "npmScope": "avidtrader",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "wb-avidtrader-e2e": {
+      "tags": []
+    },
+    "wb-avidtrader": {
+      "tags": []
+    },
+    "api": {
+      "tags": []
+    },
+    "ngag-cfg": {
+      "tags": []
+    },
+    "ag-utils": {
+      "tags": []
+    },
+    "ag-base": {
+      "tags": []
+    },
+    "ngag-logger": {
+      "tags": []
+    },
+    "ngag-jwt": {
+      "tags": []
+    },
+    "ngag-i18n": {
+      "tags": []
+    },
+    "ngag-unsub": {
+      "tags": []
+    },
+    "ngag-menu": {
+      "tags": []
+    },
+    "ag-dto": {
+      "tags": []
+    }
+  }
+}

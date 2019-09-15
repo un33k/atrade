@@ -1,0 +1,11 @@
+{
+  "$schema": "../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../../dist/libs/ng/ag/jwt",
+  "lib": {
+    "entryFile": "src/index.ts",
+    "flatModuleFile": "ngag-jwt",
+    "umdModuleIds": {
+      "lodash": "lodash"
+    }
+  }
+}
