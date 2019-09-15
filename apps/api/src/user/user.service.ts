@@ -2,11 +2,10 @@ import { Injectable, HttpException, HttpStatus, NotFoundException } from '@nestj
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { UserLoginDTO, UserRegisterDTO, StatusDTO, UserCreateDTO, UserResponseDTO, UserUpdateDTO } from '@agx/dto';
+import { UserCreateDTO, UserResponseDTO, UserUpdateDTO } from '@agx/dto';
 import { UserEntity } from './user.entity';
 import { USER_PER_PAGE } from './user.constants';
-import { environment } from '../environments/environment';
-import { tryGet, Validator } from '@agx/utils';
+import { tryGet } from '@agx/utils';
 
 @Injectable()
 export class UserService {
@@ -20,8 +19,8 @@ export class UserService {
     return tryGet(() => users.map(user => user.toResponseDTO()), []);
   }
 
-  async read(id: string) {
-    const user = await this.userRepository.findOne({ where: { id } });
+  async read(username: string) {
+    const user = await this.userRepository.findOne({ where: { username } });
     if (!user) {
       throw new HttpException('Unknown user', HttpStatus.NOT_FOUND);
     }

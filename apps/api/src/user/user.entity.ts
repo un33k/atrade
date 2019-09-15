@@ -1,12 +1,5 @@
 import { tryGet } from '@agx/utils';
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  CreateDateColumn,
-  BeforeInsert,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, BeforeInsert, UpdateDateColumn } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 
@@ -112,7 +105,7 @@ export class UserEntity {
   private get token(): string {
     return jwt.sign(
       {
-        sub: this.id
+        sub: this.username
       },
       environment.seekret,
       { expiresIn: `${USER_JWT_EXPIRY}d` }

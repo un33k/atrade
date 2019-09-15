@@ -11,7 +11,7 @@ import { AuthModule } from '../auth/auth.module';
     // app level imports
     DatabaseModule,
     UserModule,
-    AuthModule,
+    AuthModule
   ],
   controllers: [
     // app level controllers

@@ -31,29 +31,36 @@
 - ns.appname = NativeScript (Andriod, iOS)
 - ic.appname = Ionic (Andriod, iOS)
 
-
 # Avidtrader - Instruction
 
 #### Install Nrwl
+
 npm install -g @nrwl/schematics@latest
 
 #### Create a mono repo
+
 npm init nx-workspace avidtrader
 
 #### Graph dependencies
+
 npm run dep-graph
 
 #### Graph dependencies uncommitted changes from affected libs/apps
+
 npm run affected -- --target dep-graph --uncommitted
 
 #### Graph dependencies changes from affected libs/apps on master
+
 npm run affected -- --target dep-graph --base=master
 
 #### Test uncommitted changes from affected libs/apps
+
 npm run affected -- --target test --uncommitted
 
 #### Test committed changes on master
+
 npm run affected -- --target test --base=master
 
 #### Format changed files
+
 npm run format

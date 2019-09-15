@@ -1,6 +1,4 @@
-General Narwal Documentation
-=
-
+# General Narwal Documentation
 
 This project was generated using [Nx](https://nx.dev).
 

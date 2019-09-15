@@ -1,7 +1,9 @@
-import { Controller, Post, Body, UsePipes } from '@nestjs/common';
+import { Controller, Post, Body, UsePipes, Get, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { UserRegisterDTO, UserLoginDTO } from '@agx/dto';
 import { ValidationPipe } from '@nt';
+import { AuthGuardApi } from './auth.guard.api';
+import { Token } from '../user/user.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -17,5 +19,11 @@ export class AuthController {
   @UsePipes(new ValidationPipe())
   register(@Body() data: UserRegisterDTO) {
     return this.authService.register(data);
+  }
+
+  @Get('whoami')
+  @UseGuards(new AuthGuardApi())
+  showMe(@Token('sub') username: string) {
+    return this.authService.userService.read(username);
   }
 }

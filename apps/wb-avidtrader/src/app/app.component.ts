@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent {
   hello$ = this.http.get<Message>('/api/hello');
-  user$: Observable<UserResponseDTO>
+  user$: Observable<UserResponseDTO>;
 
   private appOptions: AppCfg = DefaultAppCfg;
   constructor(private http: HttpClient, private cfg: CfgService, private log: LoggerService) {
@@ -25,5 +25,4 @@ export class AppComponent {
   loadUser() {
     this.user$ = this.http.get<UserResponseDTO>('/api/user/all');
   }
-
 }
