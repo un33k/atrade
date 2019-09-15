@@ -1,50 +1,34 @@
-import { IsNotEmpty, IsEmpty } from 'class-validator';
-
-/**
- * Login request object
- */
-export class UserLoginDTO {
-  username: string;
-
-  email: string;
-
-  @IsNotEmpty()
-  password: string;
-}
+import { IsNotEmpty, IsEmpty, IsString, IsEmail, IsOptional, IsNotIn } from 'class-validator';
 
 /**
  * Create request object
  */
 export class UserCreateDTO {
-  @IsNotEmpty()
+  @IsString()
   username: string;
 
-  @IsNotEmpty()
+  @IsEmail()
   email: string;
 
+  @IsOptional()
+  @IsString()
   firstName?: string;
-  lastName?: string;
-}
 
-/**
- * Register request object
- */
-export class UserRegisterDTO extends UserCreateDTO {
-  @IsNotEmpty()
-  password: string;
+  @IsOptional()
+  @IsString()
+  lastName?: string;
 }
 
 /**
  * Update request object
  */
 export class UserUpdateDTO {
-  @IsEmpty()
-  username: string;
-
-  @IsEmpty()
-  email: string;
-
+  @IsOptional()
+  @IsString()
   firstName?: string;
+
+  @IsOptional()
+  @IsString()
   lastName?: string;
 }
 
@@ -52,10 +36,7 @@ export class UserUpdateDTO {
  * Update Email request object
  */
 export class UserUpdateEmailDTO {
-  @IsEmpty()
-  username: string;
-
-  @IsNotEmpty()
+  @IsEmail()
   email: string;
 }
 

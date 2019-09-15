@@ -1,7 +1,8 @@
 import { Controller, Get, Post, Put, Delete, Body, Param, UsePipes } from '@nestjs/common';
 import { UserService } from './user.service';
-import { UserResponseDTO, UserCreateDTO, UserUpdateDTO, UserRegisterDTO, UserLoginDTO } from '@agx/dto';
+import { UserResponseDTO, UserCreateDTO, UserUpdateDTO } from '@agx/dto';
 import { ValidationPipe } from '@nt';
+import { Token } from './user.decorator';
 
 @Controller('user')
 export class UserController {
@@ -18,6 +19,7 @@ export class UserController {
   }
 
   @Post()
+  @UsePipes(new ValidationPipe())
   create(@Body() data: UserCreateDTO) {
     return this.userService.create(data);
   }
@@ -29,7 +31,7 @@ export class UserController {
   }
 
   @Delete(':id')
-  delete(@Param('id') id: string) {
+  delete(@Param('id') id: string, @Token('sub') userId: string) {
     return this.userService.delete(id);
   }
 }
