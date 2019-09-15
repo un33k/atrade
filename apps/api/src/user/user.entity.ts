@@ -40,7 +40,7 @@ export class UserEntity {
    */
   @BeforeInsert()
   async setPassword() {
-    this.password = await this.bcryptPassword(this.password);
+    this.password = await this.hashPassword(this.password);
   }
 
   /**
@@ -48,7 +48,7 @@ export class UserEntity {
    * @param password password string
    */
   async setNewPassword(password: string) {
-    this.password = await this.bcryptPassword(password);
+    this.password = await this.hashPassword(password);
   }
 
   /**
@@ -113,11 +113,11 @@ export class UserEntity {
   }
 
   /**
-   * Returns a salted-bcrypted password
+   * Returns an a one-way hassed password
    * @param password string
    * @note to prevent null-password attacks, no user shall be created with a null-password
    */
-  private async bcryptPassword(password: string) {
+  private async hashPassword(password: string) {
     password = password || Math.random().toString();
     return await bcrypt.hash(password, 10);
   }
