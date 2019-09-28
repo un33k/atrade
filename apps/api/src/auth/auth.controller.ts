@@ -23,7 +23,7 @@ export class AuthController {
 
   @Get('whoami')
   @UseGuards(new AuthGuardApi())
-  showMe(@Token('sub') username: string) {
+  showMe(@Token('username') username: string) {
     return this.authService.userService.read(username);
   }
 }
