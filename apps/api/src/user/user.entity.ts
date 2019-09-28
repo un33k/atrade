@@ -103,13 +103,7 @@ export class UserEntity {
    * Returns an encrypted JWT token for user for session
    */
   private get token(): string {
-    return jwt.sign(
-      {
-        sub: this.username
-      },
-      environment.seekret,
-      { expiresIn: `${USER_JWT_EXPIRY}d` }
-    );
+    return jwt.sign({ username: this.username }, environment.seekret, { expiresIn: `${USER_JWT_EXPIRY}d` });
   }
 
   /**
