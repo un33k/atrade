@@ -12,7 +12,7 @@ export class UserResolver {
     return 'hello';
   }
 
-  @Query(returns => [UserResponseDTO])
+  @Query(() => [UserResponseDTO])
   users(): Promise<UserResponseDTO[]> {
     return this.userService.findAll();
   }
