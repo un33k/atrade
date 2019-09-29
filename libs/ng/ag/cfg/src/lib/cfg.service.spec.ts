@@ -69,7 +69,7 @@ describe('CfgService remote cfg - empty rmtCfg', () => {
     });
 
     injector = getTestBed();
-    service = injector.get(CfgService);
+    service = injector.inject(CfgService);
   });
 
   afterEach(() => {
@@ -97,8 +97,8 @@ describe('CfgService remote config via GET', () => {
     });
 
     injector = getTestBed();
-    service = injector.get(CfgService);
-    httpMock = injector.get(HttpTestingController);
+    service = injector.inject(CfgService);
+    httpMock = injector.inject(HttpTestingController);
   });
 
   afterEach(() => {
@@ -151,8 +151,8 @@ describe('CfgService remote config via POST', () => {
     });
 
     injector = getTestBed();
-    service = injector.get(CfgService);
-    httpMock = injector.get(HttpTestingController);
+    service = injector.inject(CfgService);
+    httpMock = injector.inject(HttpTestingController);
   });
 
   afterEach(() => {
@@ -197,8 +197,8 @@ describe('CfgService remote config in dev mode w/o headers', () => {
     });
 
     injector = getTestBed();
-    service = injector.get(CfgService);
-    httpMock = injector.get(HttpTestingController);
+    service = injector.inject(CfgService);
+    httpMock = injector.inject(HttpTestingController);
   });
 
   afterEach(() => {

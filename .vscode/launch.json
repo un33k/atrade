@@ -5,19 +5,29 @@
       "type": "chrome",
       "request": "launch",
       "name": "Launch Angular",
-      "url": "http://localhost:4200",
+      "preLaunchTask": "npm: start:wb-avidtrader",
+      "url": "http://localhost:4200/",
       "webRoot": "${workspaceFolder}/apps/wb-avidtrader"
     },
     {
+      "type": "node",
+      "request": "launch",
       "name": "Launch NestJS",
+      "preLaunchTask": "npm: start:api",
+      "localRoot": "${workspaceFolder}/apps/api/src",
+      "remoteRoot": "${workspaceFolder}/dist/apps/api"
+    },
+    {
       "type": "node",
       "request": "attach",
+      "name": "Attach NestJS",
+      "sourceMaps": true,
       "port": 7777
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Node NestJS Jest Unit Tests",
+      "name": "Debug Jest Tests",
       "program": "${workspaceFolder}/node_modules/@angular/cli/bin/ng",
       "args": ["test", "${input:libName}", "--runInBand=true", "--codeCoverage=false"],
       "cwd": "${workspaceFolder}",
@@ -26,10 +36,36 @@
       "trace": "all"
     }
   ],
+  "inputs": [
+    {
+      "type": "pickString",
+      "id": "libName",
+      "description": "Run jest tests from which nx.json project?",
+      "options": [
+        "wb-avidtrader-e2e",
+        "wb-avidtrader",
+        "api",
+        "ngag-cfg",
+        "ag-utils",
+        "ag-base",
+        "ngag-logger",
+        "ngag-jwt",
+        "ngag-i18n",
+        "ngag-unsub",
+        "ngag-menu",
+        "ag-dto"
+      ],
+      "default": "frameshare"
+    }
+  ],
   "compounds": [
     {
-      "name": "NestJS and Angular",
-      "configurations": ["Launch NestJS", "Launch Angular"]
+      "name": "Debug NestJS",
+      "configurations": ["Launch NestJS", "Attach NestJS"]
+    },
+    {
+      "name": "Debug NestJS and Angular",
+      "configurations": ["Launch NestJS", "Attach NestJS", "Launch Angular"]
     }
   ]
 }

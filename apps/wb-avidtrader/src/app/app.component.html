@@ -5,4 +5,14 @@
 <div>Message: {{ hello$ | async | json }}</div>
 
 <button (click)="loadUser()">Load Users</button>
-<div>Users: {{ user$ | async | json }}</div>
+<div>
+  Users:
+  <ul *ngIf="user$ | async as users">
+    <li *ngFor="let user of users">
+      <div>Username: {{ user.username }}</div>
+      <div *ngIf="user.email">Email: {{ user.email }}</div>
+      <div>Name: {{ user.firstName }} {{ user.lastName }}</div>
+      <br />
+    </li>
+  </ul>
+</div>

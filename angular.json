@@ -22,13 +22,8 @@
             "main": "apps/wb-avidtrader/src/main.ts",
             "polyfills": "apps/wb-avidtrader/src/polyfills.ts",
             "tsConfig": "apps/wb-avidtrader/tsconfig.app.json",
-            "assets": [
-              "apps/wb-avidtrader/src/favicon.ico",
-              "apps/wb-avidtrader/src/assets"
-            ],
-            "styles": [
-              "apps/wb-avidtrader/src/styles.scss"
-            ],
+            "assets": ["apps/wb-avidtrader/src/favicon.ico", "apps/wb-avidtrader/src/assets"],
+            "styles": ["apps/wb-avidtrader/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -79,14 +74,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/wb-avidtrader/tsconfig.app.json",
-              "apps/wb-avidtrader/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/wb-avidtrader/**"
-            ]
+            "tsConfig": ["apps/wb-avidtrader/tsconfig.app.json", "apps/wb-avidtrader/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!apps/wb-avidtrader/**"]
           }
         },
         "test": {
@@ -121,9 +110,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/wb-avidtrader-e2e/tsconfig.e2e.json",
-            "exclude": [
-              "!apps/wb-avidtrader-e2e/**"
-            ]
+            "exclude": ["!apps/wb-avidtrader-e2e/**"]
           }
         }
       }
@@ -141,9 +128,7 @@
             "outputPath": "dist/apps/api",
             "main": "apps/api/src/main.ts",
             "tsConfig": "apps/api/tsconfig.app.json",
-            "assets": [
-              "apps/api/src/assets"
-            ]
+            "assets": ["apps/api/src/assets"]
           },
           "configurations": {
             "production": {
@@ -168,14 +153,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/api/tsconfig.app.json",
-              "apps/api/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/api/**"
-            ]
+            "tsConfig": ["apps/api/tsconfig.app.json", "apps/api/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!apps/api/**"]
           }
         },
         "test": {
@@ -203,14 +182,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/ng/ag/cfg/tsconfig.lib.json",
-              "libs/ng/ag/cfg/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ng/ag/cfg/**"
-            ]
+            "tsConfig": ["libs/ng/ag/cfg/tsconfig.lib.json", "libs/ng/ag/cfg/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/ng/ag/cfg/**"]
           }
         },
         "test": {
@@ -233,14 +206,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/ag/utils/tsconfig.lib.json",
-              "libs/ag/utils/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ag/utils/**"
-            ]
+            "tsConfig": ["libs/ag/utils/tsconfig.lib.json", "libs/ag/utils/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/ag/utils/**"]
           }
         },
         "test": {
@@ -262,14 +229,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/ag/base/tsconfig.lib.json",
-              "libs/ag/base/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ag/base/**"
-            ]
+            "tsConfig": ["libs/ag/base/tsconfig.lib.json", "libs/ag/base/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/ag/base/**"]
           }
         },
         "test": {
@@ -297,14 +258,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/ng/ag/logger/tsconfig.lib.json",
-              "libs/ng/ag/logger/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ng/ag/logger/**"
-            ]
+            "tsConfig": ["libs/ng/ag/logger/tsconfig.lib.json", "libs/ng/ag/logger/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/ng/ag/logger/**"]
           }
         },
         "test": {
@@ -334,14 +289,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/ng/ag/jwt/tsconfig.lib.json",
-              "libs/ng/ag/jwt/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ng/ag/jwt/**"
-            ]
+            "tsConfig": ["libs/ng/ag/jwt/tsconfig.lib.json", "libs/ng/ag/jwt/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/ng/ag/jwt/**"]
           }
         },
         "test": {
@@ -371,14 +320,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/ng/ag/i18n/tsconfig.lib.json",
-              "libs/ng/ag/i18n/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ng/ag/i18n/**"
-            ]
+            "tsConfig": ["libs/ng/ag/i18n/tsconfig.lib.json", "libs/ng/ag/i18n/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/ng/ag/i18n/**"]
           }
         },
         "test": {
@@ -408,14 +351,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/ng/ag/unsub/tsconfig.lib.json",
-              "libs/ng/ag/unsub/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ng/ag/unsub/**"
-            ]
+            "tsConfig": ["libs/ng/ag/unsub/tsconfig.lib.json", "libs/ng/ag/unsub/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/ng/ag/unsub/**"]
           }
         },
         "test": {
@@ -445,14 +382,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/ng/ag/menu/tsconfig.lib.json",
-              "libs/ng/ag/menu/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ng/ag/menu/**"
-            ]
+            "tsConfig": ["libs/ng/ag/menu/tsconfig.lib.json", "libs/ng/ag/menu/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/ng/ag/menu/**"]
           }
         },
         "test": {
@@ -475,14 +406,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/ag/dto/tsconfig.lib.json",
-              "libs/ag/dto/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ag/dto/**"
-            ]
+            "tsConfig": ["libs/ag/dto/tsconfig.lib.json", "libs/ag/dto/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/ag/dto/**"]
           }
         },
         "test": {
@@ -501,7 +426,7 @@
       "versionMismatch": false
     },
     "defaultCollection": "@nrwl/angular",
-    "analytics": "77d9597d-ee35-453d-a781-5fadacd5f1d9"
+    "analytics": true
   },
   "schematics": {
     "@nrwl/angular:application": {
