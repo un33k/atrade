@@ -65,23 +65,17 @@ export class UserEntity {
    * @warn sensetive data such as password shall not be sent to client
    */
   toResponseDTO(options?: UserResponseOptions): UserResponseDTO {
-    const { id, createdAt, updatedAt, username, token, firstName, lastName } = this;
+    const { id, createdAt, updatedAt, username, firstName, lastName } = this;
     const response: UserResponseDTO = {
-      id,
+      id: id.toString(),
       createdAt,
       updatedAt,
       username,
       firstName,
-      lastName
+      lastName,
+      token: tryGet(() => options.includeToken) ? this.token : null,
+      email: tryGet(() => options.includeEmail) ? this.email : null
     };
-
-    if (tryGet(() => options.includeToken)) {
-      response.token = token;
-    }
-
-    if (tryGet(() => options.includeEmail)) {
-      response.email = this.email;
-    }
 
     return response;
   }

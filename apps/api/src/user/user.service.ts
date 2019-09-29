@@ -11,7 +11,7 @@ import { tryGet } from '@agx/utils';
 export class UserService {
   constructor(@InjectRepository(UserEntity) readonly userRepository: Repository<UserEntity>) {}
 
-  async showAll(page = 1) {
+  async findAll(page = 1) {
     const users = await this.userRepository.find({
       take: USER_PER_PAGE,
       skip: USER_PER_PAGE * (page - 1)

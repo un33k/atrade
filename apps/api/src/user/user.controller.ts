@@ -10,7 +10,7 @@ export class UserController {
 
   @Get('all')
   showAll(): Promise<UserResponseDTO[]> {
-    return this.userService.showAll();
+    return this.userService.findAll();
   }
 
   @Get(':username')

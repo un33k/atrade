@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsEmpty, IsString, IsEmail, IsOptional, IsNotIn } from 'class-validator';
+import { IsString, IsEmail, IsOptional, IsNotIn } from 'class-validator';
+import { Field, ID, ObjectType } from 'type-graphql';
 
 /**
  * Create request object
@@ -43,13 +44,22 @@ export class UserUpdateEmailDTO {
 /**
  * User profile request response
  */
+@ObjectType({description: 'User Response Data Transfer Object (DTO) '})
 export class UserResponseDTO {
-  id: string;
-  username: string;
-  createdAt: Date;
-  updatedAt: Date;
-  firstName: string;
-  lastName: string;
-  email?: string;
-  token?: string;
+  @Field(type => ID)
+  readonly id: string;
+  @Field()
+  readonly username: string;
+  @Field({ nullable: true })
+  readonly createdAt?: Date;
+  @Field({ nullable: true })
+  readonly updatedAt?: Date;
+  @Field({ nullable: true })
+  readonly firstName?: string;
+  @Field({ nullable: true })
+  readonly lastName?: string;
+  @Field({ nullable: true })
+  readonly email?: string;
+  @Field()
+  readonly token?: string;
 }
