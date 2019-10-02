@@ -60,6 +60,6 @@ export class UserResponseDTO {
   readonly lastName?: string;
   @Field({ nullable: true })
   readonly email?: string;
-  @Field()
+  @Field({ nullable: true })
   readonly token?: string;
 }

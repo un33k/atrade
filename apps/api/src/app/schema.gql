@@ -22,5 +22,5 @@ type UserResponseDTO {
   firstName: String
   lastName: String
   email: String
-  token: String!
+  token: String
 }
