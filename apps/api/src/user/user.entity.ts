@@ -1,12 +1,8 @@
 import { tryGet } from '@agx/utils';
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, BeforeInsert, UpdateDateColumn } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
-import * as jwt from 'jsonwebtoken';
 
-import { UserResponseDTO, UserCreateDTO, UserRegisterDTO } from '@agx/dto';
-
-import { environment } from '../environments/environment';
-import { USER_JWT_EXPIRY } from './user.constants';
+import { UserResponseDTO, UserCreateDTO, UserRegisterRequestDTO } from '@agx/dto';
 import { UserResponseOptions } from './user.types';
 
 @Entity('user')
@@ -34,6 +30,9 @@ export class UserEntity {
 
   @Column({ length: 255 })
   password: string;
+
+  @Column({ type: 'int', default: 1 })
+  sessionId: number;
 
   /**
    * Before the initial insert, we need to have a password
@@ -73,7 +72,6 @@ export class UserEntity {
       username,
       firstName,
       lastName,
-      token: tryGet(() => options.includeToken) ? this.token : null,
       email: tryGet(() => options.includeEmail) ? this.email : null
     };
 
@@ -84,20 +82,13 @@ export class UserEntity {
    * Hydrates user record with given partial data
    * @param data partial user data
    */
-  toModel(data: Partial<UserCreateDTO | UserRegisterDTO>) {
+  toModel(data: Partial<UserCreateDTO | UserRegisterRequestDTO>) {
     for (const key of Object.keys(data)) {
       if (this.hasOwnProperty(key)) {
         this[key] = data[key];
       }
     }
     return this;
-  }
-
-  /**
-   * Returns an encrypted JWT token for user for session
-   */
-  private get token(): string {
-    return jwt.sign({ username: this.username }, environment.seekret, { expiresIn: `${USER_JWT_EXPIRY}d` });
   }
 
   /**

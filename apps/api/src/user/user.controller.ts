@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Put, Delete, Body, Param, UsePipes, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
-import { UserResponseDTO, UserCreateDTO, UserUpdateDTO } from '@agx/dto';
+import { UserResponseDTO, UserCreateDTO, UserUpdateDTO, UserRegisterRequestDTO } from '@agx/dto';
 import { ValidationPipe } from '@nt';
 import { AuthGuardApi } from '../auth/auth.guard.api';
 
@@ -13,9 +13,9 @@ export class UserController {
     return this.userService.findAll();
   }
 
-  @Get(':username')
-  read(@Param('username') username: string) {
-    return this.userService.read(username);
+  @Get(':id')
+  read(@Param('id') id: string) {
+    return this.userService.read(id);
   }
 
   @Post()

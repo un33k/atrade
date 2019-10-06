@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { UserRegisterDTO } from '@agx/dto';
+import { UserRegisterRequestDTO } from '@agx/dto';
 
 /** Whether this is a production server */
 const production = false;
@@ -26,7 +26,7 @@ const ormConfig: TypeOrmModuleOptions = {
   entities: [production ? `${__dirname}../../../../dist/**/*.entity.js` : `${__dirname}/../**/*.entity.ts`]
 };
 
-const adminInfo: UserRegisterDTO = {
+const adminInfo: UserRegisterRequestDTO = {
   username: 'admino',
   firstName: 'Val',
   lastName: 'Neekman',

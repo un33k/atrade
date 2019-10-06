@@ -1,10 +1,10 @@
-import { IsString, IsEmail, IsOptional } from 'class-validator';
+import { IsString, IsEmail, IsOptional, IsBoolean } from 'class-validator';
 import { UserCreateDTO } from './user.dto';
 
 /**
  * Login request object
  */
-export class UserLoginDTO {
+export class UserLoginRequestDTO {
   @IsOptional()
   @IsString()
   username: string;
@@ -18,9 +18,26 @@ export class UserLoginDTO {
 }
 
 /**
+ * Login response object
+ */
+export class UserLoginReponseDTO {
+  @IsBoolean()
+  ok: boolean;
+
+  @IsString()
+  accessToken: string;
+
+  @IsOptional()
+  @IsString()
+  message?: string;
+}
+
+export class UserRegisterReponseDTO extends UserLoginReponseDTO {}
+
+/**
  * Register request object
  */
-export class UserRegisterDTO extends UserCreateDTO {
+export class UserRegisterRequestDTO extends UserCreateDTO {
   @IsString()
   password: string;
 }

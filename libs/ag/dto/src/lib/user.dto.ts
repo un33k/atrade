@@ -44,7 +44,7 @@ export class UserUpdateEmailDTO {
 /**
  * User profile request response
  */
-@ObjectType({description: 'User Response Data Transfer Object (DTO) '})
+@ObjectType({ description: 'User Response Data Transfer Object (DTO) ' })
 export class UserResponseDTO {
   @Field(type => ID)
   readonly id: string;
